@@ -1,3 +1,4 @@
+import Category from "@/components/layouts/Category";
 import Header from "@/components/layouts/Header";
 import Hero from "@/components/layouts/Hero";
 
@@ -6,6 +7,7 @@ export default function Home() {
     <>
       <Header />
       <Hero />
+      <Category />
     </>
   );
 }
