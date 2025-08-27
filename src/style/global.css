@@ -5,11 +5,16 @@
 
 @theme {
   --color-gaming-purple: hsl(270 91% 65%);
-  --color-background: hsl(250, 24%, 9%);
+  --color-primary: hsl(262 83% 58%);
+  --color-primary-glow: hsl(262 100% 75%);
+  --color-background: hsl(220 13% 6%);
+  --color-foreground: hsl(45 40% 98%);
   --color-secondary: hsl(240 3.7% 15.9%);
-  --shadow-gaming: 0 0 30px hsl(270 91% 65% / 0.3);
-  --shadow-gaming-intense: 0 0 50px hsl(270 91% 65% / 0.5),
-    0 0 100px hsl(320 100% 70% / 0.3);
+  --color-card: hsl(220 13% 9%);
+  --color-border: hsl(60 3% 15%);
+  --color-muted: hsl(220 13% 12%);
+  --color-muted-foreground: hsl(220 9% 65%);
+
   --color-gradient-card: linear-gradient(
     145deg,
     hsl(240 3.7% 15.9% / 0.8),
@@ -21,7 +26,7 @@
     hsl(270 50% 20%),
     hsl(240 10% 3.9%)
   );
-  --color-background-light: hsl(222 84% 91.8%);
+
 
   --animate-float: float 3s ease-in-out infinite;
 
@@ -50,8 +55,8 @@
 }
 @layer base {
   body {
-    background-color: hsl(240 10% 3.9%);
-    color: hsl(0 0% 98%);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
   }
   /* Works in Firefox */
   * {
@@ -77,18 +82,6 @@
   }
 
   :root {
-    --card: 240 10% 3.9%;
-
-    /* Gaming color system */
-    --gaming-purple: 270 91% 65%;
-    --gaming-purple-dark: 270 50% 40%;
-    --gaming-purple-light: 270 100% 80%;
-    --gaming-cyan: 180 100% 70%;
-    --gaming-pink: 320 100% 70%;
-    --gaming-green: 120 100% 60%;
-
-    /* --glow-purple: 0 0 30px hsl(271 91% 65% / 0.5); */
-
     /* Gradients */
     --gradient-gaming: linear-gradient(
       135deg,
@@ -118,6 +111,63 @@
     background-image: var(--gradient-gaming);
     @apply bg-clip-text text-transparent;
   }
+  .color-card-1 {
+    background-image: linear-gradient(
+      124deg,
+      rgba(139, 68, 238, 0.13) 16.17%,
+      rgba(77, 47, 236, 0) 74.83%
+    );
+  }
+  .color-card-2 {
+    background-image: linear-gradient(
+      124deg,
+      rgba(68, 139, 238, 0.14) 16.17%,
+      rgba(47, 126, 236, 0) 74.83%
+    );
+  }
+  .color-card-3 {
+    background-image: linear-gradient(
+      163deg,
+      rgba(239, 196, 105, 0.11) 11.01%,
+      rgba(0, 0, 0, 0.15) 78.93%
+    );
+  }
+  .color-card-4 {
+    background-image: linear-gradient(
+      124deg,
+      rgba(36, 80, 85, 0.2) 16.17%,
+      rgba(36, 80, 85, 0) 74.83%
+    );
+  }
+  .color-card-5 {
+    background-image: linear-gradient(
+      124deg,
+      rgba(68, 139, 238, 0.2) 16.17%,
+      rgba(68, 139, 238, 0) 74.83%
+    );
+  }
+  .color-card-6 {
+    background-image: linear-gradient(
+      124deg,
+      rgba(236, 64, 122, 0.2) 16.17%,
+      rgba(236, 64, 122, 0) 74.83%
+    );
+  }
+  .color-card-7 {
+    background-image: linear-gradient(
+      124deg,
+      rgba(102, 187, 106, 0.2) 16.17%,
+      rgba(102, 187, 106, 0) 74.83%
+    );
+  }
+  .color-card-8 {
+    background-image: linear-gradient(
+      124deg,
+      rgba(255, 193, 7, 0.2) 16.17%,
+      rgba(255, 193, 7, 0) 74.83%
+    );
+  }
+
 }
 
 @layer components {
