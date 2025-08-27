@@ -2,7 +2,7 @@ import Title from "../ui/Title";
 import CategoryList from "./CategoryList";
 const Category = () => {
   return (
-    <div className="bg-purple-900/5 relative px-5">
+    <div className="relative px-5">
 
       <div className="container z-10 relative">
         <Title

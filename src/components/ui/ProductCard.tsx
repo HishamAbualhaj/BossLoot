@@ -1,6 +1,5 @@
 import Image from "next/image";
-import React from "react";
-
+import React, { useState } from "react";
 
 import { Eye, Heart, Star } from "lucide-react";
 interface props {
@@ -25,8 +24,9 @@ const ProductCard = ({
   rating,
   reviews,
 }: props) => {
+  const [heart, setHeart] = useState(false);
   return (
-    <div className="border-2 border-gray-800 bg-background rounded-lg p-5 relative">
+    <div className="border border-border bg-card rounded-lg p-5 relative">
       <div className="flex justify-center">
         <Image height={300} width={300} alt="" src={image} />
       </div>
@@ -42,7 +42,7 @@ const ProductCard = ({
         {category.map((cat, i) => (
           <div
             key={i}
-            className="px-2 py-1 bg-purple-600 font-bold  rounded-md text-sm"
+            className="xl:px-5 px-3 py-1 bg-primary/20 border border-primary/30 text-primary-glow rounded-lg text-sm"
           >
             {cat}
           </div>
@@ -62,19 +62,30 @@ const ProductCard = ({
         <div className="text-gray-400">({rating})</div>
       </div>
       <div className="mt-4 flex gap-5 items-center">
-        <div className=" line-through text-lg">{price}</div>
+        <div className=" line-through text-lg">$ {price}</div>
         <div className="text-purple-200 text-lg">
           $ {Math.round(price - (discount / 100) * price)}
         </div>
       </div>
 
       <div className="flex gap-5 items-center mt-4">
-        <div className="text-xl hover:bg-[image:var(--gradient-gaming)] cursor-pointer transition flex-1 text-center bg-purple-700 rounded-md py-2">
+        <div className="text-xl hover:bg-[image:var(--gradient-gaming)] cursor-pointer transition flex-1 text-center bg-primary rounded-md py-2">
           Add to cart
         </div>
 
-        <div className="">
-          <Heart />
+        <div className="cursor-pointer">
+          <Heart
+          size={25}
+            className="transition"
+            fill={`${heart ? "#fb2c36" : ""}`}
+            stroke={`${heart ? "#fb2c36" : "white"}`}
+            onMouseEnter={() => {
+              setHeart(true);
+            }}
+            onMouseLeave={() => {
+              setHeart(false);
+            }}
+          />
         </div>
       </div>
     </div>
