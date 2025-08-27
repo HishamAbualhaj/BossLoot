@@ -75,20 +75,9 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #666; /* hover effect */
   }
+
   :root {
     --card: 240 10% 3.9%;
-
-    --primary: 270 91% 65%;
-
-    --accent: 270 70% 50%;
-
-    --destructive: 0 84.2% 60.2%;
-
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 270 91% 65%;
-
-    --radius: 0.75rem;
 
     /* Gaming color system */
     --gaming-purple: 270 91% 65%;
@@ -122,6 +111,9 @@
 }
 
 @layer utilities {
+  .container {
+    @apply max-w-[1300px] mx-auto py-20;
+  }
   .text-gaming {
     background-image: var(--gradient-gaming);
     @apply bg-clip-text text-transparent;
