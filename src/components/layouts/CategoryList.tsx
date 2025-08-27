@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { Gamepad, Usb, Play, Shirt, Star, Puzzle } from "lucide-react";
 const CategoryList = () => {
   const [activeCategory, setActiveCategory] = useState<number>(0);
 
@@ -53,27 +54,27 @@ const CategoryList = () => {
   const categories = [
     {
       name: "Gaming Gear",
-      icon: "",
+      icon: <Gamepad />,
     },
     {
       name: "Peripherals",
-      icon: "",
+      icon: <Usb />,
     },
     {
       name: "Games",
-      icon: "",
+      icon: <Play />,
     },
     {
       name: "Accessories & Add-ons",
-      icon: "",
+      icon: <Puzzle />,
     },
     {
       name: "Merch & Lifestyle",
-      icon: "",
+      icon: <Shirt />,
     },
     {
       name: "Specials",
-      icon: "",
+      icon: <Star />,
     },
   ];
   return (
@@ -88,8 +89,9 @@ const CategoryList = () => {
               }}
               className={`${
                 activeCategory === i ? " bg-primary text-white" : ""
-              } hover:bg-muted transition rounded-xl cursor-pointer px-5 py-[11px] text-nowrap text-muted-foreground `}
+              } hover:bg-muted transition rounded-xl cursor-pointer px-5 py-[11px] text-nowrap text-muted-foreground flex items-center xl:gap-5 gap-2`}
             >
+              {cat.icon}
               {cat.name}
             </div>
           ))}
