@@ -4,6 +4,9 @@ import Hero from "@/components/layouts/Hero";
 import Products from "@/components/layouts/Products";
 import Reviews from "@/components/layouts/Reviews";
 import Quality from "@/components/layouts/Quality";
+import Brands from "@/components/layouts/Brands";
+import Payment from "@/components/layouts/Payment";
+import Newsletter from "@/components/layouts/Newsletter";
 
 export default function Home() {
   return (
@@ -14,6 +17,9 @@ export default function Home() {
       <Products />
       <Reviews />
       <Quality />
+      <Brands />
+      <Payment />
+      <Newsletter />
     </>
   );
 }
