@@ -21,15 +21,17 @@ const Brands = () => {
     asus,
   ];
   return (
-    <div className="xl:py-15 py-12 text-center px-5 border-b border-border">
-      <div className="xl:text-6xl text-4xl">Brands & Partnerships</div>
-      <div className="text-muted-foreground mt-3 max-w-[700px] mx-auto xl:text-lg xl:pb-15 pb-12">
-        We partner with the world's leading gaming and technology brands to
-        bring you the best products, exclusive deals, and cutting-edge
-        innovation.
-      </div>
-      <div className=" border-t border-border">
-        <BrandSwiper images={images} />
+    <div className="px-5">
+      <div className="xl:py-15 py-12 text-center px-5 border-b dark:border-border border-gray-500/20">
+        <div className="xl:text-6xl text-4xl">Brands & Partnerships</div>
+        <div className="dark:text-muted-foreground text-black/70 mt-3 max-w-[700px] mx-auto xl:text-lg xl:pb-15 pb-12">
+          We partner with the world's leading gaming and technology brands to
+          bring you the best products, exclusive deals, and cutting-edge
+          innovation.
+        </div>
+        <div className="border-t dark:border-border border-gray-500/20">
+          <BrandSwiper images={images} />
+        </div>
       </div>
     </div>
   );

@@ -105,7 +105,7 @@ const Products = () => {
     },
   ];
   return (
-    <div className="relative bg-purple-900/5 px-5">
+    <div className="relative dark:bg-purple-900/5 bg-white/30 px-5">
       <div className="container z-10 relative">
         <Title
           title="Products"

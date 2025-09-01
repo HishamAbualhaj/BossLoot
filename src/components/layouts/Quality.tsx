@@ -67,11 +67,11 @@ const Quality = () => {
           <div className="text-center xl:text-7xl sm:text-5xl text-4xl text-gaming ">
             Where quality meets victory.
           </div>
-          <div className="mt-2 text-muted-foreground xl:text-2xl sm:text-xl text-lg text-center">
+          <div className="mt-2 dark:text-muted-foreground text-black/70 xl:text-2xl sm:text-xl text-lg text-center">
             Every product, a step closer to domination.
           </div>
           <ProductShowcase products={products} />
-          <div className="bg-primary/80 hover:bg-primary cursor-pointer py-2 mt-10 text-center rounded-md text-xl">
+          <div className="dark:bg-primary/80 bg-purple-500 text-white hover:bg-primary cursor-pointer py-2 mt-10 text-center rounded-md text-xl">
             Explore  All Products
           </div>
         </div>

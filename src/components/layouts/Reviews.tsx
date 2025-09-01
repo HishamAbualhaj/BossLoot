@@ -63,20 +63,20 @@ const Reviews = () => {
   ];
 
   return (
-    <div className="py-20 xl:px-15 px-5 ">
+    <div className="bg-gray-200 dark:bg-background py-20 xl:px-15 px-5 ">
       <div className="text-center text-5xl">
         Trusted by pro gamers and streamers
       </div>
-      <div className="max-w-[700px] text-muted-foreground mx-auto mt-5 text-[17px] text-center">
+      <div className="max-w-[700px] dark:text-muted-foreground text-black/50 mx-auto mt-5 text-[17px] text-center">
         Built with precision engineering and gamer feedback, our products
         deliver more than just style. They provide the edge you need to stay
         ahead in every match.
       </div>
-      <div className="mt-10 border border-gray-800 rounded-lg xl:p-8 p-5 grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-5 relative">
+      <div className="mt-10 border dark:border-gray-800 border-gray-400/50 rounded-lg xl:p-8 p-5 grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-5 relative">
         {reviews.map((item, i) => (
           <div
             key={item.id}
-            className={`border border-gray-500/50 relative z-10  ${
+            className={`dark:border border-gray-500/50 relative z-10  ${
               i === 1 ? "xl:col-span-2" : ""
             } ${i === 2 ? "xl:col-span-2" : ""} ${
               i === 5 ? "xl:col-span-2" : ""
@@ -84,7 +84,7 @@ const Reviews = () => {
               item.id
             }`}
           >
-            <div className="text-muted-foreground xl:text-2xl text-xl font-bold">
+            <div className="dark:text-muted-foreground text-black/50 xl:text-2xl text-xl font-bold">
               {item.company}
             </div>
             <div className="max-w-[500px] xl:text-lg text-[17px] mt-3">{item.text}</div>
@@ -95,7 +95,7 @@ const Reviews = () => {
 
               <div className="">
                 <div className="text-xl">{item.name}</div>
-                <div className="text-muted-foreground mt-1">{item.title}</div>
+                <div className="dark:text-muted-foreground mt-1 text-black/70">{item.title}</div>
               </div>
             </div>
           </div>

@@ -6,8 +6,8 @@ import Image from "next/image";
 const BrandSwiper = ({ images }: { images: string[] }) => {
   return (
     <div className="relative mt-15">
-      <div className="w-[300px] z-10 h-full absolute left-0  bg-gradient-to-r from-background to-transparent"></div>
-      <div className="w-[300px] z-10 h-full absolute right-0  bg-gradient-to-l from-background to-transparent"></div>
+      <div className="w-[300px] z-10 h-full absolute left-0  bg-gradient-to-r dark:from-background from-gray-200 to-transparent"></div>
+      <div className="w-[300px] z-10 h-full absolute right-0  bg-gradient-to-l dark:from-background from-gray-200  to-transparent"></div>
       <Swiper
         modules={[Autoplay]}
         loop={true}

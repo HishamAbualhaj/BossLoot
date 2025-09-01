@@ -79,7 +79,7 @@ const CategoryList = () => {
   ];
   return (
     <div className="flex gap-5 mt-10 lg:flex-row flex-col">
-      <div className="bg-card/50 rounded-lg lg:p-5 lg:pr-15 max-lg:px-5 border border-border/50">
+      <div className="dark:bg-card/50 bg-gray-300 rounded-lg lg:p-5 lg:pr-15 max-lg:px-5 dark:border border-border/50">
         <div className="flex lg:flex-col overflow-auto max-lg:py-5 gap-5">
           {categories.map((cat, i) => (
             <div
@@ -88,8 +88,8 @@ const CategoryList = () => {
                 setActiveCategory(i);
               }}
               className={`${
-                activeCategory === i ? " bg-primary text-white" : ""
-              } hover:bg-muted transition rounded-xl cursor-pointer px-5 py-[11px] text-nowrap text-muted-foreground flex items-center xl:gap-5 gap-2`}
+                activeCategory === i ? " bg-primary dark:text-white text-white" : ""
+              } dark:hover:bg-muted hover:bg-white/30 transition rounded-xl  cursor-pointer px-5 py-[11px] text-nowrap dark:text-muted-foreground text-black/90 flex items-center xl:gap-5 gap-2`}
             >
               {cat.icon}
               {cat.name}
@@ -103,10 +103,9 @@ const CategoryList = () => {
           <>
             <div
               key={`${activeCategory}-${i}`}
-              className={`border relative z-10 border-border/50 animate-appear bg-center bg-cover max-lg:py-10 rounded-md flex items-center justify-center`}
+              className={`dark:border relative z-10 bg-gray-300/50 dark:bg-card border-border/50 animate-appear bg-center bg-cover max-lg:py-10 rounded-md flex items-center justify-center dark:text-muted-foreground text-black/90`}
             >
               {txt.name}
-              <div className="absolute top-0 left-0 w-full h-full bg-black/25 hover:bg-transparent transition"></div>
             </div>
           </>
         ))}

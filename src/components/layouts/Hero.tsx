@@ -46,8 +46,7 @@ const Hero = () => {
         />
       </div>
 
-    
-      <div className="bg-[image:var(--gradient-gaming-subtle)] py-15 px-5">
+      <div className="dark:bg-[image:var(--gradient-gaming-subtle)] bg-[image:var(--gradient-gaming)] py-15 px-5">
         <div className="text-center flex flex-col py-10  relative z-10">
           <div className="text-gamng 2xl:text-8xl xl:text-7xl text-6xl font-bold">
             Gaming
@@ -57,25 +56,25 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="text-gray-500 mx-auto max-w-[700px] text-center xl:text-xl text-md relative z-10">
+        <div className="dark:text-gray-500  text-black mx-auto max-w-[700px] text-center xl:text-xl text-md relative z-10">
           Discover the ultimate gaming experience with our exclusive collection
           of premium gaming gear, controllers, and accessories.
         </div>
-        <div className="relative max-sm:flex hidden ">
+        <div className="relative sm:hidden flex  mt-5">
           <input
             type="text"
             placeholder="What are you looking for?"
-            className="h-10 w-full mt-5 rounded-md px-3 py-2 text-white focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-4 pr-10 bg-secondary/50 border-gaming-purple/30 focus:border-gaming-purple border"
+            className="h-10 rounded-md w-full px-3 py-2 dark:text-white focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-4 pr-10 dark:bg-secondary/50 bg-gray-200 text-black border-gaming-purple/30 focus:border-gaming-purple dark:border "
           />
           <Search
             size="20px"
-            className="text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
+            className="text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 "
           />
         </div>
 
         <div className="flex justify-center md:flex-row flex-col text-center gap-5 mt-10">
           <Link href="">
-            <div className="bg-gaming-purple px-7 py-2 rounded-md text-xl">
+            <div className="bg-gaming-purple px-7 py-2 rounded-md text-xl dark:text-white text-white">
               Get Started
             </div>
           </Link>
@@ -90,13 +89,17 @@ const Hero = () => {
           {features.map((item, i) => (
             <div
               key={i}
-              className="flex flex-col gap-5 text-center border border-gaming-purple/20 rounded-md bg-purple-800/10 p-7"
+              className="flex flex-col gap-5 text-center border border-gaming-purple/20 rounded-md bg-purple-800/30 dark:bg-purple-800/10 p-7"
             >
-              <div className="rounded-full bg-purple-400/30 text-purple-400 w-fit p-3 mx-auto">
+              <div className="rounded-full dark:bg-purple-400/30 bg-purple-800/70 text-purple-400 w-fit p-3 mx-auto">
                 {item.icon}
               </div>
-              <div className="text-xl font-bold">{item.title}</div>
-              <div className="text-gray-400 max-w-[400px]">{item.subtitle}</div>
+              <div className="text-xl font-bold text-white dark:text-white">
+                {item.title}
+              </div>
+              <div className="dark:text-gray-400 max-w-[400px]">
+                {item.subtitle}
+              </div>
             </div>
           ))}
         </div>

@@ -71,7 +71,7 @@ const Payment = () => {
       </div>
 
       <div className="max-w-[1400px] mx-auto">
-        <div className="grid xl:grid-cols-4 lg:grid-cols-2 grid-cols-1 gap-10 mt-10 border-t border-b border-border">
+        <div className="grid xl:grid-cols-4 lg:grid-cols-2 grid-cols-1 gap-10 mt-10  border-t border-b dark:border-border border-gray-500/20">
           {options.map((item, i) => (
             <div
               key={i}
@@ -87,15 +87,15 @@ const Payment = () => {
           ))}
         </div>
         <div className="mt-10 xl:text-4xl text-2xl">Secure payments, fearless shopping.</div>
-        <div className="grid xl:grid-cols-2 grid-cols-1 gap-4 mt-10">
+        <div className="grid 2xl:grid-cols-3 xl:grid-cols-2 grid-cols-1 gap-4 mt-10">
           {paymentFeatures.map((item, i) => (
             <div
               key={i}
-              className=" border-border bg-card/80 border p-5 rounded-md"
+              className=" dark:border-border border-gray-400/25 dark:bg-card/80 bg-gray-400/15 border p-5 rounded-md"
             >
               <div className="text-lg"> {item.title}</div>
 
-              <div className="mt-3 text-muted-foreground">{item.subtitle}</div>
+              <div className="mt-3 dark:text-muted-foreground text-black/70">{item.subtitle}</div>
             </div>
           ))}
         </div>
