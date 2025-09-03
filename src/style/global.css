@@ -27,10 +27,23 @@
     hsl(240 10% 3.9%)
   );
 
-
   --animate-float: float 3s ease-in-out infinite;
 
   --animate-appear: appear 1s ease-in-out forwards;
+
+  --animate-openDialog: openDialog 0.4s ease-in-out forwards;
+
+  @keyframes openDialog {
+    0% {
+      max-height: 0;
+      opacity: 0.2;
+    }
+    100% {
+      max-height: 500px;
+      opacity: 1;
+    }
+  }
+
   @keyframes appear {
     0% {
       opacity: 0;
