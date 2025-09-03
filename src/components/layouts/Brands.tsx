@@ -8,6 +8,7 @@ import steelseries from "@/assets/steelseries.svg";
 import gigabyte from "@/assets/gigabyte.svg";
 import asus from "@/assets/asus.svg";
 import BrandSwiper from "./BrandSwiper";
+import Heading from "../ui/Heading";
 
 const Brands = () => {
   const images = [
@@ -23,13 +24,14 @@ const Brands = () => {
   return (
     <div className="px-5">
       <div className="xl:py-15 py-12 text-center px-5 border-b dark:border-border border-gray-500/20">
-        <div className="xl:text-6xl text-4xl">Brands & Partnerships</div>
-        <div className="dark:text-muted-foreground text-black/70 mt-3 max-w-[700px] mx-auto xl:text-lg xl:pb-15 pb-12">
-          We partner with the world's leading gaming and technology brands to
+        <Heading
+          title="Brands & Partnerships"
+          subtitle="We partner with the world's leading gaming and technology brands to
           bring you the best products, exclusive deals, and cutting-edge
-          innovation.
-        </div>
-        <div className="border-t dark:border-border border-gray-500/20">
+          innovation."
+        />
+
+        <div className="border-t border-b dark:border-border border-gray-500/20 mt-10 bg-gray-200 dark:bg-background pb-12">
           <BrandSwiper images={images} />
         </div>
       </div>

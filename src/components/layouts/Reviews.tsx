@@ -1,6 +1,7 @@
 import { User } from "lucide-react";
 import Image from "next/image";
 import React from "react";
+import Heading from "../ui/Heading";
 
 const Reviews = () => {
   const reviews = [
@@ -64,14 +65,15 @@ const Reviews = () => {
 
   return (
     <div className="bg-gray-200 dark:bg-background py-20 xl:px-15 px-5 ">
-      <div className="text-center text-5xl">
-        Trusted by pro gamers and streamers
-      </div>
-      <div className="max-w-[700px] dark:text-muted-foreground text-black/50 mx-auto mt-5 text-[17px] text-center">
-        Built with precision engineering and gamer feedback, our products
+      <div className="text-center">
+        <Heading
+          title="Trusted by pro gamers and streamers"
+          subtitle="   Built with precision engineering and gamer feedback, our products
         deliver more than just style. They provide the edge you need to stay
-        ahead in every match.
+        ahead in every match."
+        />
       </div>
+
       <div className="mt-10 border dark:border-gray-800 border-gray-400/50 rounded-lg xl:p-8 p-5 grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-5 relative">
         {reviews.map((item, i) => (
           <div
@@ -80,14 +82,16 @@ const Reviews = () => {
               i === 1 ? "xl:col-span-2" : ""
             } ${i === 2 ? "xl:col-span-2" : ""} ${
               i === 5 ? "xl:col-span-2" : ""
-            } ${i === 6 ? "xl:col-span-2" : ""} xl:p-10 p-5 rounded-md color-card-${
-              item.id
-            }`}
+            } ${
+              i === 6 ? "xl:col-span-2" : ""
+            } xl:p-10 p-5 rounded-md color-card-${item.id}`}
           >
             <div className="dark:text-muted-foreground text-black/50 xl:text-2xl text-xl font-bold">
               {item.company}
             </div>
-            <div className="max-w-[500px] xl:text-lg text-[17px] mt-3">{item.text}</div>
+            <div className="max-w-[500px] xl:text-lg text-[17px] mt-3">
+              {item.text}
+            </div>
             <div className="flex items-center mt-5 gap-3">
               <div className="p-2 border border-gray-500 rounded-full">
                 <User fill="white" />
@@ -95,7 +99,9 @@ const Reviews = () => {
 
               <div className="">
                 <div className="text-xl">{item.name}</div>
-                <div className="dark:text-muted-foreground mt-1 text-black/70">{item.title}</div>
+                <div className="dark:text-muted-foreground mt-1 text-black/70">
+                  {item.title}
+                </div>
               </div>
             </div>
           </div>

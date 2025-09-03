@@ -26,7 +26,7 @@ const ProductCard = ({
 }: props) => {
   const [heart, setHeart] = useState(false);
   return (
-    <div className="dark:border border-border dark:bg-card bg-white/50 rounded-lg p-5 relative">
+    <div className="border dark:border-border border-gray-200 dark:bg-card bg-gray-100 rounded-lg p-5 relative">
       <div className="flex justify-center">
         <Image height={300} width={300} alt="" src={image} />
       </div>

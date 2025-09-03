@@ -3,7 +3,7 @@ import React from "react";
 
 const Newsletter = () => {
   return (
-    <div className="py-12 dark:bg-card bg-white px-5">
+    <div className="py-12 dark:bg-card bg-gray-100 px-5">
       <div className="max-w-[750px] mx-auto">
         <div className="flex items-center gap-3">
           <Mail size={35} />

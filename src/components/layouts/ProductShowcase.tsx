@@ -20,7 +20,7 @@ const ProductShowcase = ({ products }: { products: Product[] }) => {
   }, []);
   return (
     <div className="flex xl:flex-row flex-col items-center mt-10 gap-5">
-      <div className="dark:bg-card/50 bg-gray-200 max-xl:order-2 dark:border-border/80 border border-gray-500/30 p-5 rounded-xl">
+      <div className="dark:bg-card/50 bg-gray-100 max-xl:order-2 dark:border-border/80 border border-gray-200 p-5 rounded-xl">
         <Image width={500} height={500} src={gaming} alt="" />
 
         <div key={products[item].title} className="mt-5 animate-appear">
@@ -38,7 +38,7 @@ const ProductShowcase = ({ products }: { products: Product[] }) => {
             {products[item].features.map((item, i) => (
               <div
                 key={`${i}-${item}`}
-                className="dark:border border-border/80 p-3 dark:text-white dark:bg-primary/20 bg-gray-300/40 text-black rounded-md animate-appear"
+                className="dark:border border-border/80 p-3 dark:text-white dark:bg-primary/20 bg-gray-200/50 text-black rounded-md animate-appear"
               >
                 {item}
               </div>
@@ -57,8 +57,8 @@ const ProductShowcase = ({ products }: { products: Product[] }) => {
               }}
               key={i}
               className={`${
-                i === item ? "border-primary" : ""
-              } cursor-pointer bg-gray-200 dark:hover:bg-card hover:bg-gray-300/70 dark:border transition border-border rounded-md dark:bg-card/30 sm:p-5 p-3 flex items-center gap-5`}
+                i === item ? "dark:border-primary border-primary/50" : ""
+              } cursor-pointer bg-gray-100 dark:hover:bg-card hover:bg-gray-300/50 border transition dark:border-border border-gray-200 rounded-md dark:bg-card/30 sm:p-5 p-3 flex items-center gap-5`}
             >
               <div
                 className={`${

@@ -8,6 +8,7 @@ import Brands from "@/components/layouts/Brands";
 import Payment from "@/components/layouts/Payment";
 import Newsletter from "@/components/layouts/Newsletter";
 import BlogSection from "@/components/layouts/BlogSection";
+import Faq from "@/components/layouts/Faq";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <Payment />
       <Newsletter />
       <BlogSection />
+      <Faq />
     </>
   );
 }

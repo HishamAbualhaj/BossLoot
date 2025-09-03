@@ -4,6 +4,7 @@ import binance from "@/assets/binance.svg";
 import paypal from "@/assets/paypal.svg";
 import mastercard from "@/assets/mastercard.svg";
 import Image from "next/image";
+import Heading from "../ui/Heading";
 const Payment = () => {
   const options = [
     { image: visa, width: 100, height: 100 },
@@ -64,11 +65,12 @@ const Payment = () => {
 
   return (
     <div className="text-center xl:py-15 py-12 px-5">
-      <div className="xl:text-6xl text-4xl">Payment Options</div>
-      <div className="text-muted-foreground mt-3 max-w-[700px] mx-auto xl:text-lg">
-        Shop with confidence using your preferred payment method. All
-        transactions are secured with industry-leading encryption.
-      </div>
+      <Heading
+        title="Payment Options"
+        subtitle="Shop with confidence using your preferred payment method. All
+        transactions are secured with industry-leading encryption."
+      />
+
 
       <div className="max-w-[1400px] mx-auto">
         <div className="grid xl:grid-cols-4 lg:grid-cols-2 grid-cols-1 gap-10 mt-10  border-t border-b dark:border-border border-gray-500/20">
@@ -86,7 +88,9 @@ const Payment = () => {
             </div>
           ))}
         </div>
-        <div className="mt-10 xl:text-4xl text-2xl">Secure payments, fearless shopping.</div>
+        <div className="mt-10 xl:text-4xl text-2xl">
+          Secure payments, fearless shopping.
+        </div>
         <div className="grid 2xl:grid-cols-3 xl:grid-cols-2 grid-cols-1 gap-4 mt-10">
           {paymentFeatures.map((item, i) => (
             <div
@@ -95,7 +99,9 @@ const Payment = () => {
             >
               <div className="text-lg"> {item.title}</div>
 
-              <div className="mt-3 dark:text-muted-foreground text-black/70">{item.subtitle}</div>
+              <div className="mt-3 dark:text-muted-foreground text-black/70">
+                {item.subtitle}
+              </div>
             </div>
           ))}
         </div>

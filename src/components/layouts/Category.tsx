@@ -3,7 +3,7 @@ import CategoryList from "./CategoryList";
 const Category = () => {
   return (
     <div className="relative">
-      <div className="bg-gray-200 dark:bg-background px-5">
+      <div className="bg-gray-100 dark:bg-background px-5">
         <div className="container z-10 relative">
           <Title
             title="Category"

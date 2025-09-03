@@ -97,7 +97,7 @@ const BlogSection = () => {
             {trendingPosts.map((post, i) => (
               <div
                 key={i}
-                className="bg-white/30 dark:bg-secondary/25 border dark:border-border border-gray-400/25 p-3 rounded-2xl"
+                className="bg-gray-100 dark:bg-secondary/25 border dark:border-border border-gray-200 p-3 rounded-2xl"
               >
                 <div className="flex max-sm:flex-col gap-3 sm:items-start">
                   <Image

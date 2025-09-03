@@ -79,7 +79,7 @@ const CategoryList = () => {
   ];
   return (
     <div className="flex gap-5 mt-10 lg:flex-row flex-col">
-      <div className="dark:bg-card/50 bg-gray-300 rounded-lg lg:p-5 lg:pr-15 max-lg:px-5 dark:border border-border/50">
+      <div className="dark:bg-card/50 bg-gray-200/50 rounded-lg lg:p-5 lg:pr-15 max-lg:px-5 dark:border border-border/50">
         <div className="flex lg:flex-col overflow-auto max-lg:py-5 gap-5">
           {categories.map((cat, i) => (
             <div
@@ -103,7 +103,7 @@ const CategoryList = () => {
           <>
             <div
               key={`${activeCategory}-${i}`}
-              className={`dark:border relative z-10 bg-gray-300/50 dark:bg-card border-border/50 animate-appear bg-center bg-cover max-lg:py-10 rounded-md flex items-center justify-center dark:text-muted-foreground text-black/90`}
+              className={`dark:border relative z-10 bg-gray-200/50 dark:bg-card border-border/50 animate-appear bg-center bg-cover max-lg:py-10 rounded-md flex items-center justify-center dark:text-muted-foreground text-black/90`}
             >
               {txt.name}
             </div>
