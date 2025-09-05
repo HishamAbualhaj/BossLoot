@@ -2,8 +2,35 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-import Image from "next/image";
-const BrandSwiper = ({ images }: { images: string[] }) => {
+import Logitech from "@/assets/logitech.svg";
+import Nvidia from "@/assets/Nvidia-Logo.svg";
+import Ryzen from "@/assets/ryzen.svg";
+import Corsair from "@/assets/corsair.svg";
+import Steelseries from "@/assets/steelseries.svg";
+import Gigabyte from "@/assets/gigabyte.svg";
+import Asus from "@/assets/asus.svg";
+const BrandSwiper = () => {
+  const images = [
+    <Logitech
+      className="dark:fill-white fill-black"
+      width={200}
+      height={200}
+    />,
+    <Nvidia className="dark:fill-white fill-black" width={200} height={200} />,
+    <Ryzen className="dark:fill-white fill-black" width={200} height={200} />,
+    <Corsair className="dark:fill-white fill-black" width={200} height={200} />,
+    <Steelseries
+      className="dark:fill-white fill-black"
+      width={200}
+      height={200}
+    />,
+    <Gigabyte
+      className="dark:fill-white fill-black"
+      width={200}
+      height={200}
+    />,
+    <Asus className="dark:fill-white fill-black" width={200} height={200} />,
+  ];
   return (
     <div className="relative mt-15">
       <div className="w-[300px] z-10 h-full absolute left-0  bg-gradient-to-r dark:from-background from-gray-200 to-transparent"></div>
@@ -30,13 +57,13 @@ const BrandSwiper = ({ images }: { images: string[] }) => {
           },
         }}
       >
-        {images.map((img) => (
-          <SwiperSlide>
-            <div className="flex justify-center">
-              <Image alt={String(img)} width={200} height={200} src={img} />
-            </div>
-          </SwiperSlide>
-        ))}
+        {images.map((img) => {
+          return (
+            <SwiperSlide>
+              <div className="flex justify-center">{img}</div>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </div>
   );

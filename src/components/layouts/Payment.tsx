@@ -1,16 +1,19 @@
 import React from "react";
-import visa from "@/assets/visa.svg";
-import binance from "@/assets/binance.svg";
-import paypal from "@/assets/paypal.svg";
-import mastercard from "@/assets/mastercard.svg";
-import Image from "next/image";
+import Visa from "@/assets/visa.svg";
+import Binance from "@/assets/binance.svg";
+import Paypal from "@/assets/paypal.svg";
+import Mastercard from "@/assets/mastercard.svg";
 import Heading from "../ui/Heading";
 const Payment = () => {
   const options = [
-    { image: visa, width: 100, height: 100 },
-    { image: binance, width: 200, height: 200 },
-    { image: paypal, width: 200, height: 200 },
-    { image: mastercard, width: 100, height: 100 },
+    {
+      image: (
+        <Visa className="dark:fill-white fill-black" width={100} height={100} />
+      ),
+    },
+    { image: <Binance width={200} height={200} /> },
+    { image: <Paypal width={200} height={200} /> },
+    { image: <Mastercard width={100} height={100} /> },
   ];
   const paymentFeatures = [
     {
@@ -71,22 +74,18 @@ const Payment = () => {
         transactions are secured with industry-leading encryption."
       />
 
-
       <div className="max-w-[1400px] mx-auto">
         <div className="grid xl:grid-cols-4 lg:grid-cols-2 grid-cols-1 gap-10 mt-10  border-t border-b dark:border-border border-gray-500/20">
-          {options.map((item, i) => (
-            <div
-              key={i}
-              className="boder border-border p-10 flex justify-center rounded-lg"
-            >
-              <Image
-                width={item.width}
-                height={item.height}
-                alt=""
-                src={item.image}
-              />
-            </div>
-          ))}
+          {options.map((item, i) => {
+            return (
+              <div
+                key={i}
+                className="boder border-border p-10 flex justify-center items-center rounded-lg"
+              >
+                {item.image}
+              </div>
+            );
+          })}
         </div>
         <div className="mt-10 xl:text-4xl text-2xl">
           Secure payments, fearless shopping.
