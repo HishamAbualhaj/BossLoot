@@ -5,11 +5,16 @@
 
 @theme {
   --color-gaming-purple: hsl(270 91% 65%);
-  --color-background: hsl(240 10% 3.9%);
+  --color-primary: hsl(262 83% 58%);
+  --color-primary-glow: hsl(262 100% 75%);
+  --color-background: hsl(220 13% 6%);
+  --color-foreground: hsl(45 40% 98%);
   --color-secondary: hsl(240 3.7% 15.9%);
-  --shadow-gaming: 0 0 30px hsl(270 91% 65% / 0.3);
-  --shadow-gaming-intense: 0 0 50px hsl(270 91% 65% / 0.5),
-    0 0 100px hsl(320 100% 70% / 0.3);
+  --color-card: hsl(220 13% 9%);
+  --color-border: hsl(60 3% 15%);
+  --color-muted: hsl(220 13% 12%);
+  --color-muted-foreground: hsl(220 9% 65%);
+
   --color-gradient-card: linear-gradient(
     145deg,
     hsl(240 3.7% 15.9% / 0.8),
@@ -21,10 +26,34 @@
     hsl(270 50% 20%),
     hsl(240 10% 3.9%)
   );
-  --color-background-light: hsl(222 84% 91.8%);
 
   --animate-float: float 3s ease-in-out infinite;
 
+  --animate-appear: appear 1s ease-in-out forwards;
+
+  --animate-openDialog: openDialog 0.4s ease-in-out forwards;
+
+  @keyframes openDialog {
+    0% {
+      max-height: 0;
+      opacity: 0.2;
+    }
+    100% {
+      max-height: 500px;
+      opacity: 1;
+    }
+  }
+
+  @keyframes appear {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
   @keyframes float {
     0% {
       transform: translateY(0);
@@ -39,32 +68,33 @@
 }
 @layer base {
   body {
-    background-color: hsl(240 10% 3.9%);
-    color: hsl(0 0% 98%);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
   }
+  /* Works in Firefox */
+  * {
+    scrollbar-width: thin; /* auto | thin */
+    scrollbar-color: #444 #1a1a1a; /* thumb | track */
+  }
+  /* Works in Chrome, Edge, Safari */
+  ::-webkit-scrollbar {
+    width: 2px; /* scrollbar width */
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #1a1a1a; /* track background */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #444; /* scrollbar color */
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #666; /* hover effect */
+  }
+
   :root {
-    --card: 240 10% 3.9%;
-
-    --primary: 270 91% 65%;
-
-    --accent: 270 70% 50%;
-
-    --destructive: 0 84.2% 60.2%;
-
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 270 91% 65%;
-
-    --radius: 0.75rem;
-
-    /* Gaming color system */
-    --gaming-purple: 270 91% 65%;
-    --gaming-purple-dark: 270 50% 40%;
-    --gaming-purple-light: 270 100% 80%;
-    --gaming-cyan: 180 100% 70%;
-    --gaming-pink: 320 100% 70%;
-    --gaming-green: 120 100% 60%;
-
     /* Gradients */
     --gradient-gaming: linear-gradient(
       135deg,
@@ -80,68 +110,100 @@
     );
     --gradient-card: linear-gradient(
       145deg,
-      hsl(240 3.7% 15.9% / 0.8),
-      hsl(270 50% 20% / 0.4)
+      hsl(217 19% 12%),
+      hsl(217 19% 15%)
     );
-
-    /* Animations */
-    --transition-gaming: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
 @layer utilities {
+  .container {
+    @apply max-w-[1300px] mx-auto py-20;
+  }
   .text-gaming {
     background-image: var(--gradient-gaming);
     @apply bg-clip-text text-transparent;
+  }
+  .color-card-1 {
+    background-image: linear-gradient(
+      124deg,
+      rgba(139, 68, 238, 0.13) 16.17%,
+      rgba(77, 47, 236, 0) 74.83%
+    );
+  }
+  .color-card-2 {
+    background-image: linear-gradient(
+      124deg,
+      rgba(68, 139, 238, 0.14) 16.17%,
+      rgba(47, 126, 236, 0) 74.83%
+    );
+  }
+  .color-card-3 {
+    background-image: linear-gradient(
+      163deg,
+      rgba(239, 196, 105, 0.11) 11.01%,
+      rgba(0, 0, 0, 0.15) 78.93%
+    );
+  }
+  .color-card-4 {
+    background-image: linear-gradient(
+      124deg,
+      rgba(36, 80, 85, 0.2) 16.17%,
+      rgba(36, 80, 85, 0) 74.83%
+    );
+  }
+  .color-card-5 {
+    background-image: linear-gradient(
+      124deg,
+      rgba(68, 139, 238, 0.2) 16.17%,
+      rgba(68, 139, 238, 0) 74.83%
+    );
+  }
+  .color-card-6 {
+    background-image: linear-gradient(
+      124deg,
+      rgba(236, 64, 122, 0.2) 16.17%,
+      rgba(236, 64, 122, 0) 74.83%
+    );
+  }
+  .color-card-7 {
+    background-image: linear-gradient(
+      124deg,
+      rgba(102, 187, 106, 0.2) 16.17%,
+      rgba(102, 187, 106, 0) 74.83%
+    );
+  }
+  .color-card-8 {
+    background-image: linear-gradient(
+      124deg,
+      rgba(255, 193, 7, 0.2) 16.17%,
+      rgba(255, 193, 7, 0) 74.83%
+    );
+  }
+
+  /*Swiper */
+
+  .swiper-wrapper {
+    align-items: center;
+  }
+}
+
+@layer components {
+  .pattern-box {
+    background-image: repeating-linear-gradient(
+        45deg,
+        #444 0px,
+        #444 2px,
+        transparent 2px,
+        transparent 40px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        #444 0px,
+        #444 2px,
+        transparent 2px,
+        transparent 40px
+      );
+    border-radius: 0px;
   }
 }
