@@ -1,9 +1,12 @@
 import Link from "next/link";
 import React from "react";
 
-const Logo = () => {
+type logoProps = {
+  size?: string;
+};
+const Logo = ({ size = "2xl" }: logoProps) => {
   return (
-    <Link href="/" className="text-2xl font-extrabold text-gaming">
+    <Link href="/" className={`text-${size} font-extrabold text-gaming`}>
       BossLoot
     </Link>
   );
