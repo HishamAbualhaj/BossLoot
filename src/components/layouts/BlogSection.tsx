@@ -1,8 +1,7 @@
 import Image from "next/image";
 import React from "react";
-import setup from "@/assets/setup_gaming.png";
-import fps from "@/assets/gaming-fps.png";
 import { PenLine } from "lucide-react";
+import { frontURL } from "@/config/config";
 const BlogSection = () => {
   const badgets = ["Guide", "Streaming", "Trending"];
 
@@ -12,7 +11,7 @@ const BlogSection = () => {
       title: "Essential Gear for Competitive FPS",
       subtitle:
         "Must-have mice, keyboards, and headsets to gain an edge in shooters.",
-      image: fps,
+      image: `/gaming-fps.png`,
       date: "Sep 10, 2025",
       author: "BossLoot Team",
     },
@@ -21,7 +20,7 @@ const BlogSection = () => {
       title: "Top Gaming Accessories You Didn’t Know You Needed",
       subtitle:
         "Underrated add-ons that improve comfort and performance while gaming.",
-      image: fps,
+      image: `/gaming-fps.png`,
       date: "Aug 27, 2025",
       author: "BossLoot Team",
     },
@@ -29,7 +28,7 @@ const BlogSection = () => {
       id: 3,
       title: "Building the Ultimate Battlestation",
       subtitle: "How to create a high-performance and aesthetic gaming setup.",
-      image: fps,
+      image: `/gaming-fps.png`,
       date: "Jan 1, 2025",
       author: "BossLoot Team",
     },
@@ -38,7 +37,7 @@ const BlogSection = () => {
       title: "Next-Gen Gaming on a Budget",
       subtitle:
         "Choosing the right hardware and accessories without overspending.",
-      image: fps,
+      image: `/gaming-fps.png`,
       date: "Sep 25, 2025",
       author: "BossLoot Team",
     },
@@ -68,7 +67,7 @@ const BlogSection = () => {
               className="rounded-2xl w-full"
               width={800}
               height={800}
-              src={setup}
+              src={`/setup_gaming.png`}
             />
             <div className="bg-gradient-to-t from-black/70 to-transparent w-full h-full absolute z-10 bottom-0 left-0"></div>
             <div className="absolute bottom-0 z-20 w-full">

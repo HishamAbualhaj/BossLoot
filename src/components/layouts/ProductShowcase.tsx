@@ -1,8 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { ReactNode, useEffect, useState } from "react";
-import gaming from "@/assets/gaming-hero.jpg";
-
+import { frontURL } from "@/config/config";
 type Product = {
   title: string;
   subtitle: string;
@@ -21,7 +20,7 @@ const ProductShowcase = ({ products }: { products: Product[] }) => {
   return (
     <div className="flex xl:flex-row flex-col items-center mt-10 gap-5">
       <div className="dark:bg-card/50 bg-gray-100 max-xl:order-2 dark:border-border/80 border border-gray-200 p-5 rounded-xl">
-        <Image width={500} height={500} src={gaming} alt="" />
+        <Image width={500} height={500} src={`/gaming-hero.jpg`} alt="" />
 
         <div key={products[item].title} className="mt-5 animate-appear">
           <div className="font-bold text-2xl flex  items-center gap-3">

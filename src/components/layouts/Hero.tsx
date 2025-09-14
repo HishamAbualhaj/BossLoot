@@ -2,8 +2,7 @@ import { Headset, Search, Users, Zap } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import mouse from "@/assets/mouse.png";
-import hand from "@/assets/hand.png";
+import { frontURL } from "@/config/config";
 const Hero = () => {
   const features = [
     {
@@ -30,7 +29,7 @@ const Hero = () => {
       <div className="md:w-[220px] md:h-[220px] w-[120px] h-[120px] left-22 md:top-40 top-52  absolute">
         <Image
           alt="mouse image"
-          src={mouse}
+          src={`/mouse.png`}
           fill
           className="object-contain animate-float opacity-75 [animation-delay:2s]"
         />
@@ -41,7 +40,7 @@ const Hero = () => {
           alt="hand image"
           height={220}
           width={220}
-          src={hand}
+          src={`/hand.png`}
           className="absolute animate-float"
         />
       </div>
