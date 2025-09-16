@@ -22,7 +22,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
       className="px-5 h-screen relative bg-center bg-cover bg-no-repeat flex"
     >
       <div className="absolute z-20 left-16 top-8">
-        <Logo size="4xl"/>
+        <Logo size="4xl" />
       </div>
       <div className="absolute top-0 left-0 h-full w-full dark:bg-[linear-gradient(rgba(15,12,41,0.8),rgba(15,12,41,0.8))]"></div>
 
