@@ -6,7 +6,8 @@ import React, { useState } from "react";
 import FilterItem from "./FilterItem";
 import CheckBox from "./CheckBox";
 import useSearchPara from "@/hooks/useSearchPara";
-
+import ProductCard from "@/components/ui/ProductCard";
+import { products } from "@/components/layouts/Products";
 const page = () => {
   const [productSearch, setProductSearch] = useState("");
   const filterItem = [
@@ -29,7 +30,7 @@ const page = () => {
   ];
   return (
     <>
-      <div className="min-h-screen">
+      <div className="min-h-screen border-b dark:border-border border-gray-200 pb-16">
         <div className="border-b dark:border-border border-gray-200 py-4">
           <div className="xl:px-15 px-8">
             <div className="flex items-center gap-5">
@@ -54,8 +55,8 @@ const page = () => {
             </div>
           </div>
         </div>
-        <div className="flex">
-          <div className="border-r dark:border-border border-gray-200">
+        <div className="flex mt-5 gap-5 px-5">
+          <div className="border h-fit dark:border-border border-gray-200">
             <div className="text-center dark:bg-card bg-gray-200 py-2 text-lg">
               Filter
             </div>
@@ -71,7 +72,11 @@ const page = () => {
             ))}
           </div>
 
-          <div className="grid grid-cols-3"></div>
+          <div className="grid grid-cols-4 flex-1 gap-5">
+            {products.map((product, i) => (
+              <ProductCard key={i} {...product} />
+            ))}
+          </div>
         </div>
       </div>
     </>
