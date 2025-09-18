@@ -1,10 +1,14 @@
 "use client";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import { ChevronRight, ListFilterPlus } from "lucide-react";
-import React from "react";
+import { ListFilterPlus } from "lucide-react";
+import React, { useState } from "react";
+import FilterItem from "./FilterItem";
+import CheckBox from "./CheckBox";
+import useSearchPara from "@/hooks/useSearchPara";
 
 const page = () => {
+  const [productSearch, setProductSearch] = useState("");
   const filterItem = [
     {
       title: "Categories",
@@ -25,7 +29,7 @@ const page = () => {
   ];
   return (
     <>
-      <div className="">
+      <div className="min-h-screen">
         <div className="border-b dark:border-border border-gray-200 py-4">
           <div className="xl:px-15 px-8">
             <div className="flex items-center gap-5">
@@ -38,7 +42,10 @@ const page = () => {
               <div className="flex items-center gap-3 flex-1">
                 <Input
                   className="flex-1"
-                  onChange={() => {}}
+                  onChange={(e) => {
+                    setProductSearch(e.target.value);
+                  }}
+                  value={productSearch}
                   placeholder="Search"
                   type="text"
                 />
@@ -55,19 +62,11 @@ const page = () => {
 
             {filterItem.map((item, i) => (
               <>
-                <div className="border-b dark:border-border border-gray-200 ">
-                  <div
-                    key={i}
-                    onClick={() => {}}
-                    className=" py-5 cursor-pointer dark:hover:bg-card/50 hover:bg-gray-200/50 pr-16 pl-3"
-                  >
-                    <div className="text-xl flex items-center gap-3">
-                      <ChevronRight />
-                      {item.title}
-                    </div>
-                  </div>
-                  <div className="ml-10">{item.component}</div>
-                </div>
+                <FilterItem
+                  key={i}
+                  title={item.title}
+                  component={item.component}
+                />
               </>
             ))}
           </div>
@@ -83,26 +82,32 @@ const Categories = () => {
   const categories = [
     {
       name: "Gaming Gear",
+      value: "gaming",
       count: 10,
     },
     {
       name: "Peripherals",
+      value: "peripherals",
       count: 15,
     },
     {
       name: "Games",
+      value: "games",
       count: 11,
     },
     {
       name: "Accessories & Add-ons",
+      value: "accessories",
       count: 25,
     },
     {
       name: "Merch & Lifestyle",
+      value: "merch",
       count: 5,
     },
     {
       name: "Specials",
+      value: "specials",
       count: 3,
     },
   ];
@@ -112,8 +117,7 @@ const Categories = () => {
       {categories.map((category, i) => (
         <div key={i} className="">
           <div className="flex items-center gap-3">
-            <div className="w-5 h-5 border dark:border-border border-gray-300 cursor-pointer dark:hover:bg-primary dark:hover:border-none hover:bg-primary hover:border-none rounded-md"></div>
-
+            <CheckBox type="category" value={category.value} />
             {category.name}
             <div className="text-gray-400 text-sm">({category.count})</div>
           </div>
@@ -127,22 +131,27 @@ const Brands = () => {
   const brands = [
     {
       name: "Razer",
+      value: "razer",
       count: 7,
     },
     {
       name: "Logitech",
+      value: "logitech",
       count: 8,
     },
     {
       name: "Corsair",
+      value: "corsair",
       count: 6,
     },
     {
       name: "HyperX",
+      value: "hyperx",
       count: 2,
     },
     {
       name: "SteelSeries",
+      value: "steelseries",
       count: 20,
     },
   ];
@@ -151,8 +160,7 @@ const Brands = () => {
       {brands.map((brand, i) => (
         <div key={i} className="">
           <div className="flex items-center gap-3">
-            <div className="w-5 h-5 border dark:border-border border-gray-300 cursor-pointer dark:hover:bg-primary dark:hover:border-none hover:bg-primary hover:border-none rounded-md"></div>
-
+            <CheckBox type="brand" value={brand.value} />
             {brand.name}
             <div className="text-gray-400 text-sm">({brand.count})</div>
           </div>
@@ -163,23 +171,38 @@ const Brands = () => {
 };
 
 const Price = () => {
+  const [price, setPrice] = useState({ min: 0, max: 0 });
+
+  const handleSearchPara = useSearchPara();
   return (
     <div className="mt-2 pb-5">
       <div className="flex gap-3">
         <Input
           className="!w-28"
-          onChange={() => {}}
+          onChange={(e) => {
+            setPrice((prev) => ({ ...prev, min: Number(e.target.value) }));
+          }}
           placeholder="Min"
           type="number"
+          value={price.min}
         />
         <Input
           className="!w-28"
-          onChange={() => {}}
+          onChange={(e) => {
+            setPrice((prev) => ({ ...prev, max: Number(e.target.value) }));
+          }}
           placeholder="Max"
           type="number"
+          value={price.max}
         />
       </div>
-      <Button className="!w-fit mt-2 px-5" title="Filter" />
+      <Button
+        onClick={() => {
+          handleSearchPara("price", `${price.min}-${price.max}`, true);
+        }}
+        className="!w-fit mt-2 px-5"
+        title="Filter"
+      />
     </div>
   );
 };
@@ -188,10 +211,12 @@ const Availability = () => {
   const items = [
     {
       name: "In stock",
+      value: "instock",
       count: 5,
     },
     {
       name: "Out of stock",
+      value: "outofstock",
       count: 10,
     },
   ];
@@ -201,8 +226,7 @@ const Availability = () => {
       {items.map((item, i) => (
         <div key={i} className="">
           <div className="flex items-center gap-3">
-            <div className="w-5 h-5 border dark:border-border border-gray-300 cursor-pointer dark:hover:bg-primary dark:hover:border-none hover:bg-primary hover:border-none rounded-md"></div>
-
+            <CheckBox type="available" value={item.value} />
             {item.name}
             <div className="text-gray-400 text-sm">({item.count})</div>
           </div>
