@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, ChevronDown } from "lucide-react";
 import React, { useState } from "react";
 
 type item = {
@@ -16,7 +16,8 @@ const FilterItem = ({ title, component }: item) => {
         className=" py-5 cursor-pointer dark:hover:bg-card/50 hover:bg-gray-200/50 pr-16 pl-3"
       >
         <div className="text-xl flex items-center gap-3">
-          <ChevronRight />
+          {isOpen ? <ChevronDown /> : <ChevronRight />}
+
           {title}
         </div>
       </div>
