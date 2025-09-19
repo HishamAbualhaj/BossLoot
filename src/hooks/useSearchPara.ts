@@ -17,7 +17,7 @@ const useSearchPara = () => {
 
     if (changable) {
       para.set(type, value);
-      router.push(`${pathName}?${para.toString()}`);
+      router.push(`${pathName}?${para.toString()}`, { scroll: false });
       return;
     }
 
@@ -36,7 +36,7 @@ const useSearchPara = () => {
       para.delete(type);
     }
 
-    router.push(`${pathName}?${para.toString()}`);
+    router.push(`${pathName}?${para.toString()}`, { scroll: false });
   };
 
   return handleSearchPara;
