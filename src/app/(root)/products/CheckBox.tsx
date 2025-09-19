@@ -3,8 +3,16 @@
 import useSearchPara from "@/hooks/useSearchPara";
 import React, { useState } from "react";
 
-const CheckBox = ({ type, value }: { type: string; value: string }) => {
-  const [isSelected, setIsSelected] = useState<boolean>(false);
+const CheckBox = ({
+  type,
+  value,
+  valueChecked,
+}: {
+  type: string;
+  value: string;
+  valueChecked: string;
+}) => {
+  const [isSelected, setIsSelected] = useState<boolean>(value === valueChecked);
 
   const handleSearchPara = useSearchPara();
   const toggleFilter = () => {

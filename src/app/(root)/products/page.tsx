@@ -8,6 +8,7 @@ import CheckBox from "./CheckBox";
 import useSearchPara from "@/hooks/useSearchPara";
 import ProductCard from "@/components/ui/ProductCard";
 import { products } from "@/components/layouts/Products";
+import { useSearchParams } from "next/navigation";
 const page = () => {
   const [productSearch, setProductSearch] = useState("");
   const filterItem = [
@@ -28,6 +29,7 @@ const page = () => {
       component: <Availability />,
     },
   ];
+  const handleSearchPara = useSearchPara();
   return (
     <>
       <div className="min-h-screen border-b dark:border-border border-gray-200 pb-16">
@@ -50,7 +52,13 @@ const page = () => {
                   placeholder="Search"
                   type="text"
                 />
-                <Button className="!w-fit px-5" title="Search" />
+                <Button
+                  onClick={() => {
+                    handleSearchPara("search", productSearch, true);
+                  }}
+                  className="!w-fit px-5"
+                  title="Search"
+                />
               </div>
             </div>
           </div>
@@ -117,17 +125,30 @@ const Categories = () => {
     },
   ];
 
+  const paras = useSearchParams();
+  const arrOfCategories =
+    new URLSearchParams(paras).get("category")?.split(",") ?? [];
+
   return (
     <div className="flex flex-col gap-3 mt-2 pb-5 pr-16">
-      {categories.map((category, i) => (
-        <div key={i} className="">
-          <div className="flex items-center gap-3">
-            <CheckBox type="category" value={category.value} />
-            {category.name}
-            <div className="text-gray-400 text-sm">({category.count})</div>
+      {categories.map((category, i) => {
+        const valueToBeChecked = arrOfCategories
+          .filter((cate) => cate === category.value)
+          .join("");
+        return (
+          <div key={i} className="">
+            <div className="flex items-center gap-3">
+              <CheckBox
+                valueChecked={valueToBeChecked}
+                type="category"
+                value={category.value}
+              />
+              {category.name}
+              <div className="text-gray-400 text-sm">({category.count})</div>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
@@ -160,25 +181,45 @@ const Brands = () => {
       count: 20,
     },
   ];
+
+  const paras = useSearchParams();
+  const arrOfBrands = new URLSearchParams(paras).get("brand")?.split(",") ?? [];
   return (
     <div className="flex flex-col gap-3 mt-2 pb-5 pr-16">
-      {brands.map((brand, i) => (
-        <div key={i} className="">
-          <div className="flex items-center gap-3">
-            <CheckBox type="brand" value={brand.value} />
-            {brand.name}
-            <div className="text-gray-400 text-sm">({brand.count})</div>
+      {brands.map((brand, i) => {
+        const valueToBeChecked = arrOfBrands
+          .filter((cate) => cate === brand.value)
+          .join("");
+        return (
+          <div key={i} className="">
+            <div className="flex items-center gap-3">
+              <CheckBox
+                type="brand"
+                value={brand.value}
+                valueChecked={valueToBeChecked}
+              />
+              {brand.name}
+              <div className="text-gray-400 text-sm">({brand.count})</div>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
 
 const Price = () => {
-  const [price, setPrice] = useState({ min: 0, max: 0 });
-
+  const paras = useSearchParams();
+  const arrOfPrice = new URLSearchParams(paras).get("price")?.split("-") ?? [
+    0, 0,
+  ];
+  const [price, setPrice] = useState({
+    min: arrOfPrice[0],
+    max: arrOfPrice[1],
+  });
+  const [alert, setAlert] = useState<string>("");
   const handleSearchPara = useSearchPara();
+
   return (
     <div className="mt-2 pb-5">
       <div className="flex gap-3">
@@ -203,11 +244,18 @@ const Price = () => {
       </div>
       <Button
         onClick={() => {
+          if (price.min > price.max) {
+            setAlert("Min price should be less than max");
+            return;
+          } else {
+            setAlert("");
+          }
           handleSearchPara("price", `${price.min}-${price.max}`, true);
         }}
         className="!w-fit mt-2 px-5"
         title="Filter"
       />
+      <div className="mt-2 text-red-300">{alert}</div>
     </div>
   );
 };
@@ -225,18 +273,28 @@ const Availability = () => {
       count: 10,
     },
   ];
-
+  const paras = useSearchParams();
+  const arr = new URLSearchParams(paras).get("available")?.split(",") ?? [];
   return (
     <div className="flex flex-col gap-3 mt-2 pb-5 pr-16">
-      {items.map((item, i) => (
-        <div key={i} className="">
-          <div className="flex items-center gap-3">
-            <CheckBox type="available" value={item.value} />
-            {item.name}
-            <div className="text-gray-400 text-sm">({item.count})</div>
+      {items.map((item, i) => {
+        const valueToBeChecked = arr
+          .filter((cate) => cate === item.value)
+          .join("");
+        return (
+          <div key={i} className="">
+            <div className="flex items-center gap-3">
+              <CheckBox
+                type="available"
+                value={item.value}
+                valueChecked={valueToBeChecked}
+              />
+              {item.name}
+              <div className="text-gray-400 text-sm">({item.count})</div>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
