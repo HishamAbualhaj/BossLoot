@@ -30,14 +30,21 @@ const page = () => {
     },
   ];
   const handleSearchPara = useSearchPara();
+
+  const [isTranslate, setIsTranslate] = useState(false);
   return (
     <>
       <div className="min-h-screen border-b dark:border-border border-gray-200 pb-16">
         <div className="border-b dark:border-border border-gray-200 py-4">
           <div className="xl:px-15 px-8">
-            <div className="flex items-center gap-5">
+            <div className="flex lg:items-center max-lg:flex-col gap-5">
               <div className="flex items-center gap-2">
-                <div className="dark:bg-muted bg-gray-200 p-2 rounded-lg cursor-pointer hover:opacity-70 transition">
+                <div
+                  onClick={() => {
+                    setIsTranslate(!isTranslate);
+                  }}
+                  className="dark:bg-muted bg-gray-200 p-2 rounded-lg cursor-pointer hover:opacity-70 transition lg:hidden"
+                >
                   <ListFilterPlus />
                 </div>
                 <div className="text-2xl ">Products</div>
@@ -56,7 +63,7 @@ const page = () => {
                   onClick={() => {
                     handleSearchPara("search", productSearch, true);
                   }}
-                  className="!w-fit px-5"
+                  className="!w-fit lg:px-5 px-2"
                   title="Search"
                 />
               </div>
@@ -64,7 +71,11 @@ const page = () => {
           </div>
         </div>
         <div className="flex mt-5 gap-5 px-5">
-          <div className="border h-fit dark:border-border border-gray-200">
+          <div
+            className={`${
+              isTranslate ? "max-lg:!translate-x-0" : ""
+            } border h-fit dark:border-border border-gray-200 dark:bg-background bg-white max-lg:absolute z-10 max-lg:-translate-x-[calc(100%+20px)] transition`}
+          >
             <div className="text-center dark:bg-card bg-gray-200 py-2 text-lg">
               Filter
             </div>
@@ -80,7 +91,7 @@ const page = () => {
             ))}
           </div>
 
-          <div className="grid grid-cols-4 flex-1 gap-5">
+          <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 flex-1 gap-5">
             {products.map((product, i) => (
               <ProductCard key={i} {...product} />
             ))}
