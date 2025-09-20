@@ -2,15 +2,15 @@
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { ListFilterPlus } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FilterItem from "./FilterItem";
 import CheckBox from "./CheckBox";
 import useSearchPara from "@/hooks/useSearchPara";
 import ProductCard from "@/components/ui/ProductCard";
 import { products } from "@/components/layouts/Products";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import Pagination from "../../../components/ui/Pagination";
 const page = () => {
-  const [productSearch, setProductSearch] = useState("");
   const filterItem = [
     {
       title: "Categories",
@@ -29,7 +29,38 @@ const page = () => {
       component: <Availability />,
     },
   ];
+
+  const curentPage = useSearchParams();
   const handleSearchPara = useSearchPara();
+
+  const [arr, setArr] = useState<number[]>([1, 2, 3, 4, 5]);
+
+  const [productSearch, setProductSearch] = useState("");
+
+  const [currentPagePara, setCurrentPage] = useState<number>(
+    Number(curentPage.get("page") || 1)
+  );
+
+  useEffect(() => {
+    let tempArr = [];
+
+    let numberOfElemets = 5;
+
+    let value = currentPagePara / numberOfElemets;
+
+    let currentCycle = Math.ceil(value);
+
+    let maxNum = currentCycle * numberOfElemets;
+    let minNum = currentCycle * numberOfElemets - numberOfElemets;
+
+    let startValue = minNum + 1;
+
+    for (let i = startValue; i <= maxNum; i++) {
+      tempArr.push(i);
+    }
+    handleSearchPara("page", String(currentPagePara), true);
+    setArr(tempArr);
+  }, [currentPagePara]);
 
   const [isTranslate, setIsTranslate] = useState(false);
   return (
@@ -81,20 +112,27 @@ const page = () => {
             </div>
 
             {filterItem.map((item, i) => (
-              <>
-                <FilterItem
-                  key={i}
-                  title={item.title}
-                  component={item.component}
-                />
-              </>
+              <FilterItem
+                key={i}
+                title={item.title}
+                component={item.component}
+              />
             ))}
           </div>
 
-          <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 flex-1 gap-5">
-            {products.map((product, i) => (
-              <ProductCard key={i} {...product} />
-            ))}
+          <div className="">
+            <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 flex-1 gap-5">
+              {products.map((product, i) => (
+                <ProductCard key={i} {...product} />
+              ))}
+            </div>
+
+            <Pagination
+              maxPage={10}
+              currentPagePara={currentPagePara}
+              setCurrentPage={setCurrentPage}
+              arrOfNums={arr}
+            />
           </div>
         </div>
       </div>
