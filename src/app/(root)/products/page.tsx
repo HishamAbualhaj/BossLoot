@@ -101,7 +101,7 @@ const page = () => {
             </div>
           </div>
         </div>
-        <div className="flex mt-5 gap-5 px-5">
+        <div className="lg:flex mt-5 gap-5 sm:px-5 px-3">
           <div
             className={`${
               isTranslate ? "max-lg:!translate-x-0" : ""
@@ -192,7 +192,7 @@ const Categories = () => {
                 type="category"
                 value={category.value}
               />
-              {category.name}
+              <div className="flex-1 text-nowrap"> {category.name}</div>
               <div className="text-gray-400 text-sm">({category.count})</div>
             </div>
           </div>
@@ -201,7 +201,6 @@ const Categories = () => {
     </div>
   );
 };
-
 const Brands = () => {
   const brands = [
     {
@@ -256,7 +255,6 @@ const Brands = () => {
     </div>
   );
 };
-
 const Price = () => {
   const paras = useSearchParams();
   const arrOfPrice = new URLSearchParams(paras).get("price")?.split("-") ?? [
@@ -308,7 +306,6 @@ const Price = () => {
     </div>
   );
 };
-
 const Availability = () => {
   const items = [
     {

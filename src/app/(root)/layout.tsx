@@ -10,7 +10,9 @@ export default function RootLayout({
     <>
       <Header />
       {children}
-      <Footer />
+      <div className="px-5">
+        <Footer />
+      </div>
     </>
   );
 }

@@ -15,7 +15,7 @@ const Pagination = ({
   arrOfNums,
 }: PaginationProps) => {
   return (
-    <div className="flex justify-center items-center mt-10 gap-3">
+    <div className="flex justify-center items-center mt-10 sm:gap-3 gap-2">
       <div
         onClick={() => {
           if (currentPagePara <= 1) {
@@ -31,29 +31,29 @@ const Pagination = ({
       >
         <ChevronLeft />
       </div>
-      <div className="flex  items-center gap-5 ">
-        <div className="flex justify-center gap-4 text-lightText dark:text-white">
-          {arrOfNums.map((num) => {
-            {
-              return num > Math.ceil(maxPage / 1) ? (
-                <></>
-              ) : (
-                <div
-                  onClick={() => {
-                    setCurrentPage(num);
-                  }}
-                  key={num}
-                  className={`bg-gray-500/20 py-2 px-4 rounded-md hover:bg-slate-400 cursor-pointer ${
-                    currentPagePara === num ? "bg-purple-700 text-white" : ""
-                  }`}
-                >
-                  {num}
-                </div>
-              );
-            }
-          })}
-        </div>
+
+      <div className="flex justify-center sm:gap-4 gap-2 text-lightText dark:text-white">
+        {arrOfNums.map((num) => {
+          {
+            return num > Math.ceil(maxPage / 1) ? (
+              <></>
+            ) : (
+              <div
+                onClick={() => {
+                  setCurrentPage(num);
+                }}
+                key={num}
+                className={`bg-gray-500/20 py-2 px-4 rounded-md hover:bg-slate-400 cursor-pointer ${
+                  currentPagePara === num ? "bg-purple-700 text-white" : ""
+                }`}
+              >
+                {num}
+              </div>
+            );
+          }
+        })}
       </div>
+
       <div
         onClick={() => {
           if (currentPagePara >= maxPage) {

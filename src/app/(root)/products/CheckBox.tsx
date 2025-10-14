@@ -25,7 +25,7 @@ const CheckBox = ({
       onClick={toggleFilter}
       className={`${
         isSelected ? "bg-primary" : ""
-      } w-5 h-5 border dark:border-border border-gray-300 cursor-pointer dark:hover:bg-primary dark:hover:border-none hover:bg-primary hover:border-none rounded-md`}
+      } flex-shrink-0 w-5 h-5 border dark:border-border border-gray-300 cursor-pointer dark:hover:bg-primary dark:hover:border-none hover:bg-primary hover:border-none rounded-md`}
     ></div>
   );
 };

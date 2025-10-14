@@ -126,82 +126,84 @@ const Footer = () => {
   ];
 
   return (
-    <div className="">
-      <div className="container px-5 !pb-10">
-        <div className="flex flex-col max-lg:text-center">
-          <Logo />
-          <div className="text-muted-foreground mt-3">
-            Your ultimate destination for gaming gear & lifestyle.
+    <>
+      <div className="pt-5">
+        <div className="px-5 !pb-10">
+          <div className="flex flex-col max-lg:text-center">
+            <Logo />
+            <div className="text-muted-foreground mt-3">
+              Your ultimate destination for gaming gear & lifestyle.
+            </div>
           </div>
-        </div>
-        <div className="grid xl:grid-cols-4 lg:grid-cols-2 grid-cols-1 gap-5 mt-10">
-          <div className="flex flex-col gap-3">
-            <div className="font-bold">Links</div>
-            {links.map((link) => (
-              <Link
-                href={link.link}
-                key={link.id}
-                className="text-muted-foreground flex flex-col gap-5"
-              >
-                {link.title}
-              </Link>
-            ))}
-          </div>
-
-          <div className="flex flex-col gap-3">
-            <div className="font-bold">Support</div>
-            {support.map((item) => (
-              <Link
-                href={item.link}
-                key={item.id}
-                className="text-muted-foreground flex flex-col gap-5"
-              >
-                {item.title}
-              </Link>
-            ))}
-          </div>
-          <div className="flex flex-col gap-3">
-            <div className="font-bold">Policies</div>
-            {policies.map((item) => (
-              <Link
-                href={item.link}
-                key={item.id}
-                className="text-muted-foreground flex flex-col gap-5"
-              >
-                {item.title}
-              </Link>
-            ))}
-          </div>
-          <div className="flex flex-col gap-4">
-            <div className="font-bold">Social</div>
-            <div className="flex gap-5">
-              {socials.map(({ link, id, icon }) => (
-                <Link href={link} key={id}>
-                  {icon}
+          <div className="grid xl:grid-cols-4 lg:grid-cols-2 grid-cols-1 gap-5 mt-10">
+            <div className="flex flex-col gap-3">
+              <div className="font-bold">Links</div>
+              {links.map((link) => (
+                <Link
+                  href={link.link}
+                  key={link.id}
+                  className="text-muted-foreground flex flex-col gap-5"
+                >
+                  {link.title}
                 </Link>
               ))}
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <div className="font-bold">Support</div>
+              {support.map((item) => (
+                <Link
+                  href={item.link}
+                  key={item.id}
+                  className="text-muted-foreground flex flex-col gap-5"
+                >
+                  {item.title}
+                </Link>
+              ))}
+            </div>
+            <div className="flex flex-col gap-3">
+              <div className="font-bold">Policies</div>
+              {policies.map((item) => (
+                <Link
+                  href={item.link}
+                  key={item.id}
+                  className="text-muted-foreground flex flex-col gap-5"
+                >
+                  {item.title}
+                </Link>
+              ))}
+            </div>
+            <div className="flex flex-col gap-4">
+              <div className="font-bold">Social</div>
+              <div className="flex gap-5">
+                {socials.map(({ link, id, icon }) => (
+                  <Link href={link} key={id}>
+                    {icon}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-5 pt-5 border-t dark:border-border border-gray-300">
+            <div className="flex gap-2 items-center">
+              <div className="text-xl">©</div> {new Date().getFullYear()}{" "}
+              BossLoot. All rights reserved.
             </div>
           </div>
         </div>
 
-        <div className="mt-5 pt-5 border-t dark:border-border border-gray-300">
-          <div className="flex gap-2 items-center">
-            <div className="text-xl">©</div> {new Date().getFullYear()}{" "}
-            BossLoot. All rights reserved.
-          </div>
+        <div className="dark:bg-card bg-gray-100 py-2 text-center text-[17px] flex gap-1 justify-center items-center">
+          Designed & Built by
+          <Link
+            className=" text-gaming text-xl"
+            href="https://github.com/HishamAbualhaj"
+          >
+            Hisham Abualhaj
+          </Link>
         </div>
       </div>
-
-      <div className="dark:bg-card bg-gray-100 py-2 text-center text-[17px] flex gap-1 justify-center items-center">
-        Designed & Built by
-        <Link
-          className=" text-gaming text-xl"
-          href="https://github.com/HishamAbualhaj"
-        >
-          Hisham Abualhaj
-        </Link>
-      </div>
-    </div>
+    </>
   );
 };
 

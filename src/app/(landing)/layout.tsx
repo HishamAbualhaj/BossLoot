@@ -10,7 +10,9 @@ export default function LandingLayout({
     <>
       <Header />
       {children}
-      <Footer />
+      <div className="max-w-[1500px] mx-auto">
+        <Footer />
+      </div>
     </>
   );
 }
