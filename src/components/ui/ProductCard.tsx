@@ -9,7 +9,8 @@ import React, {
   useState,
 } from "react";
 import { productType } from "@/types";
-import { Eye, Heart, Star } from "lucide-react";
+import { Eye, Star } from "lucide-react";
+import WishList from "./WishList";
 interface props {
   id: number;
   name: string;
@@ -107,28 +108,13 @@ const ProductCard: ProductCardComponent = ({
 ProductCard.AddToCart = () => {
   const { product } = useProductCard();
 
-  const [heart, setHeart] = useState(false);
-
   return (
     <div className="flex gap-5 items-center mt-4">
       <div className="text-xl hover:bg-[image:var(--gradient-gaming)] cursor-pointer transition flex-1 text-center dark:bg-primary bg-purple-400 text-white rounded-md py-2">
         Add to cart
       </div>
 
-      <div className="cursor-pointer">
-        <Heart
-          size={25}
-          className="transition"
-          fill={`${heart ? "#fb2c36" : "transparent"}`}
-          stroke={`${heart ? "#fb2c36" : "#6a7282"}`}
-          onMouseEnter={() => {
-            setHeart(true);
-          }}
-          onMouseLeave={() => {
-            setHeart(false);
-          }}
-        />
-      </div>
+      <WishList />
     </div>
   );
 };
