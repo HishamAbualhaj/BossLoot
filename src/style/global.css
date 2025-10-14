@@ -71,28 +71,6 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
-  /* Works in Firefox */
-  * {
-    scrollbar-width: thin; /* auto | thin */
-    scrollbar-color: #444 #1a1a1a; /* thumb | track */
-  }
-  /* Works in Chrome, Edge, Safari */
-  ::-webkit-scrollbar {
-    width: 2px; /* scrollbar width */
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #1a1a1a; /* track background */
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #444; /* scrollbar color */
-    border-radius: 6px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #666; /* hover effect */
-  }
 
   :root {
     /* Gradients */
@@ -113,6 +91,46 @@
       hsl(217 19% 12%),
       hsl(217 19% 15%)
     );
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #bbb #f1f1f1;
+  }
+
+  *::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 6px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: #999;
+  }
+
+  html.dark {
+    scrollbar-color: #444 #1a1a1a;
+  }
+  @variant dark {
+    * {
+      scrollbar-color: #444 #1a1a1a;
+    }
+    *::-webkit-scrollbar-track {
+      background: #1a1a1a;
+    }
+    *::-webkit-scrollbar-thumb {
+      background: #444;
+    }
+    *::-webkit-scrollbar-thumb:hover {
+      background: #666;
+    }
   }
 }
 

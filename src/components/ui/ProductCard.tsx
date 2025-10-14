@@ -57,7 +57,7 @@ const ProductCard: ProductCardComponent = ({
   const [product, setProduct] = useState<productType | undefined>(undefined);
   return (
     <ProductCardContext.Provider value={{ product, setProduct }}>
-      <div className="border dark:border-border border-gray-200 dark:bg-card bg-gray-100 p-5 relative">
+      <div className="h-full order dark:border-border border-gray-200 dark:bg-card bg-gray-100 p-5 relative">
         <div className="flex justify-center">
           <Image height={300} width={300} alt="" src={image} />
         </div>
