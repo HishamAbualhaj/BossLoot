@@ -1,10 +1,12 @@
-import { Heart, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import React from "react";
 import ProductImage from "./ProductImage";
 import ProductCounter from "./ProductCounter";
 import Button from "@/components/ui/Button";
 import ProductFeatures from "./ProductFeatures";
 import WishList from "@/components/ui/WishList";
+import RelatedProducts from "./RelatedProducts";
+import ProductReview from "./ProductReview";
 
 const page = async ({
   params,
@@ -74,6 +76,14 @@ const page = async ({
               <ProductFeatures />
             </div>
           </div>
+        </div>
+
+        <div className="mt-16 py-10">
+          <RelatedProducts />
+        </div>
+
+        <div className="mt-16 py-10">
+          <ProductReview />
         </div>
       </div>
     </div>
