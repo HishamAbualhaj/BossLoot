@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 /* Tell Tailwind to use class strategy */
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -207,6 +208,102 @@
 }
 
 @layer components {
+  /* 🎨 Blog Content Styling */
+  .blog-content {
+    @apply mx-auto text-neutral-800 dark:text-neutral-200 leading-relaxed tracking-wide;
+  }
+
+  .blog-content h1 {
+    @apply text-4xl font-extrabold mb-8 text-center;
+  }
+
+  .blog-content h2 {
+    @apply text-2xl sm:text-3xl font-bold mt-10 mb-4 text-neutral-900 dark:text-neutral-100;
+  }
+
+  .blog-content h3 {
+    @apply text-xl font-semibold mt-6 mb-3 text-neutral-900 dark:text-neutral-100;
+  }
+
+  .blog-content p {
+    @apply text-base sm:text-lg mb-5 text-neutral-700 dark:text-neutral-300;
+  }
+
+  .blog-content ul {
+    @apply list-disc list-inside mb-6 pl-2 space-y-2;
+  }
+
+  .blog-content ol {
+    @apply list-decimal list-inside mb-6 pl-2 space-y-2;
+  }
+
+  .blog-content li {
+    @apply text-base leading-relaxed;
+  }
+
+  .blog-content strong {
+    @apply font-semibold text-neutral-900 dark:text-neutral-100;
+  }
+
+  .blog-content em {
+    @apply italic text-neutral-600 dark:text-neutral-300;
+  }
+
+  /* 🧱 Blockquote */
+  .blog-content blockquote,
+  .blog-content .admonition.quote {
+    @apply border-l-4 border-neutral-400 bg-neutral-50 dark:bg-neutral-800/60 pl-4 pr-3 py-3 italic text-neutral-700 dark:text-neutral-300 rounded-sm my-6;
+  }
+
+  /* 🧩 Admonition Box Base */
+  .blog-content .admonition {
+    @apply my-8 px-4 py-4 rounded-sm border-l-4 shadow-sm;
+  }
+  .blog-content .admonition p {
+    @apply m-0 text-base;
+  }
+
+  /* 🔵 Note */
+  .blog-content .admonition.note {
+    @apply bg-blue-50 dark:bg-blue-950/40 border-blue-500 text-blue-900 dark:text-blue-300;
+  }
+
+  /* 🟢 Tip / Success */
+  .blog-content .admonition.tip,
+  .blog-content .admonition.success {
+    @apply bg-green-50 dark:bg-green-950/40 border-green-500 text-green-900 dark:text-green-300;
+  }
+
+  /* 🟡 Warning */
+  .blog-content .admonition.warning {
+    @apply bg-yellow-50 dark:bg-yellow-950/40 border-yellow-500 text-yellow-900 dark:text-yellow-300;
+  }
+
+  /* 🟠 Info */
+  .blog-content .admonition.info {
+    @apply bg-cyan-50 dark:bg-cyan-950/40 border-cyan-500 text-cyan-900 dark:text-cyan-300;
+  }
+
+  /* 🔴 Danger */
+  .blog-content .admonition.danger {
+    @apply bg-red-50 dark:bg-red-950/40 border-red-500 text-red-900 dark:text-red-300;
+  }
+
+  /* 🪶 Quote (handled above) */
+  .blog-content .admonition.quote {
+    @apply border-neutral-400 bg-neutral-50 dark:bg-neutral-800/40 text-neutral-700 dark:text-neutral-300;
+  }
+
+  /* 📱 Responsive Images (if you ever add them) */
+  .blog-content img {
+    @apply rounded-sm shadow-md my-6 w-full object-cover;
+  }
+
+  /* 🧾 Code (optional if your blog uses it) */
+  .blog-content code {
+    @apply bg-neutral-100 dark:bg-neutral-800 px-1 py-0.5 rounded text-sm font-mono text-neutral-800 dark:text-neutral-200;
+  }
+
   .pattern-box {
     background-image: repeating-linear-gradient(
         45deg,
