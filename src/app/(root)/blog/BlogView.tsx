@@ -16,16 +16,16 @@ const BlogView = ({ data }: BlogViewProps) => {
       {data.map(({ id, title, subtitle, date, author, category }, i) => (
         <div
           key={i}
-          className="flex items-start justify-between gap-2 py-8 border-b dark:border-border border-gray-300"
+          className="flex max-lg:flex-col max-lg:gap-5 items-start justify-between gap-2 py-8 border-b dark:border-border border-gray-300"
         >
           <div className="">
             <div className="flex gap-2">
-              <Link href={`blog${category.link}`} className="text-purple-400">
+              <Link href={`blog${category.link}`} className="text-purple-400 bg-purple-400/10 px-3 rounded-full text-sm py-1">
                 {category.title}
               </Link>
               <div className=" text-gray-400">{date}</div>
             </div>
-            <Link href={`blog/${id}`}>
+            <Link href={`/blog/${id}`}>
               <div className="text-2xl font-medium mt-2">{title}</div>
               <div className="mt-2 text-gray-400">{subtitle}</div>
             </Link>
