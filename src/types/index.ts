@@ -9,9 +9,16 @@ export type productType = {
   rating: number;
   reviews: number;
 };
-
+export type productCart = {
+  id: number;
+  title:string;
+  image: string;
+  price: number;
+  count: number;
+  category: string[];
+};
 export type blog = {
-  id:string;
+  id: string;
   title: string;
   subtitle: string;
   date: string;

@@ -304,6 +304,9 @@
     @apply bg-neutral-100 dark:bg-neutral-800 px-1 py-0.5 rounded text-sm font-mono text-neutral-800 dark:text-neutral-200;
   }
 
+  .border_main {
+    @apply dark:border-border border-gray-300;
+  }
   .pattern-box {
     background-image: repeating-linear-gradient(
         45deg,
