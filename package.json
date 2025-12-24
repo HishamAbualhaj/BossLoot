@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "lucide-react": "^0.541.0",
     "next": "15.4.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "swiper": "^11.2.10",
+    "tailwind-merge": "^3.4.0",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
