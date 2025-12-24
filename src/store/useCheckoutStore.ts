@@ -1,18 +1,27 @@
 import { create } from "zustand";
-
-export type CheckoutStep = "shipping" | "payment" | "review";
+import { PaymentMethod } from "@/types/checkout";
+export type CheckoutStep = "shipping" | "payment" | "review" | null;
 
 const steps: CheckoutStep[] = ["shipping", "payment", "review"];
 
 interface CheckoutState {
   step: CheckoutStep;
+  shippingAddressId?: string;
+  setShipping: (id: string) => void;
+
   setStep: (step: CheckoutStep) => void;
   nextStep: () => void;
   prevStep: () => void;
+  setPaymentMethod: (method: PaymentMethod) => void;
+  paymentMethod: PaymentMethod | null;
 }
 
 export const useCheckoutStore = create<CheckoutState>((set, get) => ({
-  step: "payment",
+  step: "shipping",
+  paymentMethod: null,
+  setPaymentMethod: (method) => set({ paymentMethod: method }),
+
+  setShipping: (id) => set({ shippingAddressId: id }),
   setStep: (step) => set({ step }),
   nextStep: () => {
     const currentStep = get().step;
