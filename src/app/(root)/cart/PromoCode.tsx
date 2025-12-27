@@ -16,6 +16,7 @@ const PromoCode = () => {
           value={input}
           placeholder="Enter coupon code"
           type="text"
+          name={""}
         />
         <div className="bg-gray-500/20 px-3 py-2 rounded-md cursor-pointer hover:bg-gray-400/20">
           Apply

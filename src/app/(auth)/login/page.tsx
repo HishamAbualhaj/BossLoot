@@ -19,12 +19,16 @@ const LoginPage = () => {
           placeholder="Email"
           onChange={() => {}}
           type="text"
+          name=""
+          value={""}
         />
         <Input
           className="w-full"
           placeholder="Password"
           onChange={() => {}}
           type="password"
+          name=""
+          value={""}
         />
       </div>
       <Link

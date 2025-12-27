@@ -38,12 +38,16 @@ const SignupPage = () => {
             placeholder="First name"
             type="text"
             className="w-full"
+            name=""
+            value={""}
           />
           <Input
             onChange={() => {}}
             placeholder="Last name"
             type="text"
             className="w-full"
+            name=""
+            value={""}
           />
         </div>
         {inputs.map((input, i) => (
@@ -53,6 +57,8 @@ const SignupPage = () => {
             placeholder={input.placeholder}
             type={input.type}
             className={input.className}
+            name=""
+            value={""}
           />
         ))}
         <Button title="Create account" />
