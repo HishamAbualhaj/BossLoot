@@ -8,6 +8,7 @@ import { Method } from "@/types/checkout";
 import { useCheckoutStore } from "@/store/useCheckoutStore";
 import SelectPaypal from "./Paypal/SelectPaypal";
 import SelectCrypto from "./Crypto/SelectCrypto";
+import { cn } from "@/lib/cn";
 
 const PaymentStep = () => {
   const [selectedMethod, setSelectedMethod] = useState<Method>(null);
@@ -29,7 +30,11 @@ const PaymentStep = () => {
       image: "/paypal.png",
     },
   ] as const;
-  const { paymentMethod } = useCheckoutStore();
+  const { paymentMethod, setStep } = useCheckoutStore();
+
+  useEffect(() => {
+    setStep("payment");
+  }, []);
   return (
     <div className="mt-10">
       {selectedMethod && (
@@ -53,9 +58,12 @@ const PaymentStep = () => {
                 setSelectedMethod(method.id);
               }}
               key={i}
-              className={`${
-                method.id === paymentMethod?.option && "border-primary! "
-              } dark:bg-card flex items-center gap-5 border border_main p-5 rounded-lg cursor-pointer dark:hover:bg-muted hover:bg-muted-foreground/20 transition`}
+              className={cn(
+                `${method.id === paymentMethod?.option && "border-primary!"}`,
+                "dark:hover:bg-muted hover:bg-muted-foreground/20 transition",
+                "dark:bg-card flex items-center gap-5 border border_main",
+                "p-5 rounded-lg cursor-pointer"
+              )}
             >
               <Image alt="" width={50} height={50} src={method.image} />
               <div className="font-medium lg:text-xl text-lg font-mono">
