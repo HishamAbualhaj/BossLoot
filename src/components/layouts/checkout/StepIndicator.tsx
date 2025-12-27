@@ -1,7 +1,6 @@
 "use client";
-import { useCheckoutStore } from "@/store/useCheckoutStore";
-import { useRouter } from "next/navigation";
 
+import { usePathname } from "next/navigation";
 
 const StepIndicator = () => {
   const steps = [
@@ -25,9 +24,7 @@ const StepIndicator = () => {
     },
   ];
 
-  const { step } = useCheckoutStore();
-
-
+  const step = usePathname().split("/")[2];
   return (
     <div className="flex justify-between border-b border_main max-w-[1200px] mx-auto">
       {steps.map((item, i) => (
