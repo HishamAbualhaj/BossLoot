@@ -4,29 +4,39 @@ import { cn } from "@/lib/cn";
 import { Check, CreditCardIcon, Plus, Trash2Icon, X } from "lucide-react";
 import React, { useState } from "react";
 import AddCreditCard from "./AddCreditCard";
-import { card } from "@/types/checkout";
+import { Card } from "@/types/checkout";
 import Button from "@/components/ui/Button";
 import { useCheckoutStore } from "@/store/useCheckoutStore";
+import AddButton from "../../AddButton";
 const SelectCard = () => {
   const [modal, setModal] = useState(false);
-  const [selectedCard, setSelectedCard] = useState<number | null>(null);
-  const cards: card[] = [
+
+  const { setPaymentMethod, paymentMethod } = useCheckoutStore();
+  let selectedValue = null;
+  if (paymentMethod && "visaCardId" in paymentMethod.data) {
+    selectedValue = paymentMethod.data.visaCardId;
+  }
+
+  const [selectedCard, setSelectedCard] = useState<string | null>(
+    selectedValue
+  );
+  const cards: Card[] = [
     {
-      id: 1236534,
+      id: "1236534",
       holder: "Hisham Abualhaj",
       lastFourNums: "8852",
       type: "visa",
       isDefault: true,
     },
     {
-      id: 6542137,
+      id: "6542137",
       holder: "Hisham Abualhaj",
       lastFourNums: "1881",
       type: "mastercard",
       isDefault: false,
     },
     {
-      id: 1234567,
+      id: "1234567",
       holder: "Hisham Abualhaj",
       lastFourNums: "8852",
       type: "visa",
@@ -34,7 +44,6 @@ const SelectCard = () => {
     },
   ];
 
-  const { setPaymentMethod } = useCheckoutStore();
   return (
     <>
       <div className="relative">
@@ -98,7 +107,12 @@ const SelectCard = () => {
                     </div>
                     <div className="flex items-center justify-between mt-2">
                       <p className="text-muted-foreground">{card.holder}</p>
-                      <div className="hover:bg-red-500/20 hover:text-red-500 cursor-pointer p-2 rounded-sm">
+                      <div
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                        className="hover:bg-red-500/20 hover:text-red-500 cursor-pointer p-2 rounded-sm"
+                      >
                         <Trash2Icon size={17} />
                       </div>
                     </div>
@@ -124,17 +138,7 @@ const SelectCard = () => {
             </div>
           )}
         </div>
-        {!modal && (
-          <button
-            onClick={() => {
-              setModal(true);
-            }}
-            className="cursor-pointer mt-5 w-full p-4 rounded-xl border-2 border-dashed border_main hover:border-primary/50 transition-colors duration-200 flex items-center justify-center gap-2 text-muted-foreground hover:text-primary group mb-8"
-          >
-            <Plus className="w-5 h-5 transition-transform duration-200 group-hover:scale-110" />
-            <span className="font-medium">Add New Card</span>
-          </button>
-        )}
+        {!modal && <AddButton title="Add new card" onClick={setModal} />}
       </div>
     </>
   );
