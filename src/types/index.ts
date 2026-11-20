@@ -11,7 +11,7 @@ export type productType = {
 };
 export type productCart = {
   id: number;
-  title:string;
+  title: string;
   image: string;
   price: number;
   count: number;

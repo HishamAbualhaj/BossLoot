@@ -1,33 +1,40 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
+  "name": "BossLoot",
+  "version": "v1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint .",
+    "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.541.0",
-    "next": "15.4.6",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "swiper": "^11.2.10",
-    "tailwind-merge": "^3.4.0",
-    "zustand": "^5.0.8"
+    "formik": "^2.4.9",
+    "lucide-react": "^1.77.0",
+    "next": "^16.4.6",
+    "nuqs": "^2.10.3",
+    "radix-ui": "^1.8.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "swiper": "^14.4.0",
+    "tailwind-merge": "^3.7.1",
+    "tw-animate-css": "^1.4.0",
+    "yup": "^1.7.1",
+    "zustand": "^5.1.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
+    "@playwright/test": "^1.65.1",
     "@svgr/webpack": "^8.1.0",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.4.6",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "@tailwindcss/postcss": "^4.3.5",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.4.6",
+    "tailwindcss": "^4.3.5",
+    "typescript": "^5.9.3"
   }
 }

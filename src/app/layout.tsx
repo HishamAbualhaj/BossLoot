@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@/style/global.css";
 import { Poppins } from "next/font/google";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 export const metadata: Metadata = {
   title: "BossLoot",
@@ -23,7 +24,7 @@ export default function RootLayout({
       <body
         className={`${poppins.className} bg-gray-50 text-background dark:bg-background dark:text-foreground`}
       >
-        {children}
+        <NuqsAdapter>{children}</NuqsAdapter>
       </body>
     </html>
   );

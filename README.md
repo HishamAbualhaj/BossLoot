@@ -13,10 +13,27 @@
 * Zustand
 
 
+### Local setup
+
+Use Node.js 22 LTS and npm. Install the locked dependencies with `npm ci`.
+
 ### Front-End Scripts
-- **Development:** `npm run dev`
-- **Build:** `npm run build`
-- **Preview:** `npm run preview`
+- **Development:** `npm run dev` (http://localhost:3000)
+- **Lint:** `npm run lint`
+- **Type check:** `npm run typecheck`
+- **Production build:** `npm run build`
+- **Run production build:** `npm start`
+
+### Current implementation
+
+The project uses the Next.js App Router, React, TypeScript, Tailwind CSS,
+Zustand, and Swiper. Existing screens include the landing page, product listing
+and details, cart, shipping and payment checkout steps, login/signup, and blog.
+
+Product, cart, and payment data are currently mock data. Customer authentication,
+database persistence, real payments, shipping integrations, and an administration
+dashboard are not implemented. TanStack Query, Prisma, and Firebase listed above
+are potential choices, not installed dependencies.
 
 
 

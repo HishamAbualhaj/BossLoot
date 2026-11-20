@@ -1,10 +1,21 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 
 /* Tell Tailwind to use class strategy */
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+  --color-primary-foreground: #ffffff;
+  --color-card-foreground: var(--color-foreground);
+  --color-secondary-foreground: var(--color-foreground);
+  --color-popover: var(--color-card);
+  --color-popover-foreground: var(--color-foreground);
+  --color-accent: var(--color-muted);
+  --color-accent-foreground: var(--color-foreground);
+  --color-input: #d4d4d8;
+  --color-ring: #a78bfa;
+  --color-destructive: #ef4444;
   --color-gaming-purple: hsl(270 91% 65%);
   --color-primary: hsl(262 83% 58%);
   --color-primary-glow: hsl(262 100% 75%);
@@ -66,6 +77,42 @@
       transform: translateY(0);
     }
   }
+}
+
+/* Scoped tokens preserve the existing landing theme while sharing shadcn primitives. */
+.store-ui {
+  --color-background: #fafafa;
+  --color-foreground: #171722;
+  --color-card: #ffffff;
+  --color-card-foreground: #171722;
+  --color-muted: #f1f1f5;
+  --color-muted-foreground: #666676;
+  --color-border: #e5e5ec;
+  --color-input: #d4d4df;
+  --color-secondary: #f1f1f5;
+  --color-secondary-foreground: #3f3f50;
+  --color-accent: #f1effa;
+  --color-accent-foreground: #3f3f50;
+}
+.dark .store-ui {
+  --color-background: #0d0d13;
+  --color-foreground: #f2f2f7;
+  --color-card: #15151e;
+  --color-card-foreground: #f2f2f7;
+  --color-muted: #20202c;
+  --color-muted-foreground: #a3a3b5;
+  --color-border: #2a2a38;
+  --color-input: #363646;
+  --color-secondary: #242431;
+  --color-secondary-foreground: #e5e5f0;
+  --color-accent: #262239;
+  --color-accent-foreground: #e5e5f0;
+}
+button, summary, [role="checkbox"] { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+:where(a, button, summary):focus-visible { outline: 1px solid #a78bfa; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 @layer base {
   body {
@@ -325,3 +372,5 @@
     border-radius: 0px;
   }
 }
+
+.store-ui input[aria-invalid="true"] { border-color: rgb(251 113 133 / 0.5); }

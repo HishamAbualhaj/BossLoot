@@ -14,7 +14,7 @@ const PaymentCard: PaymentCardType = ({ children, onClick, isActive }) => {
         `${isActive && "border-primary! "}`,
         "dark:bg-card flex items-center justify-between border-2",
         "border_main p-3 rounded-lg cursor-pointer dark:hover:bg-muted",
-        "hover:bg-muted-foreground/20 transition"
+        "hover:bg-muted-foreground/20 transition",
       )}
     >
       {children}
