@@ -1,6 +1,5 @@
 "use client";
 import ProductCard from "@/components/ui/ProductCard";
-import Link from "next/link";
 import React from "react";
 
 const RelatedProducts = () => {
@@ -55,10 +54,8 @@ const RelatedProducts = () => {
     <>
       <div className="text-4xl">Related products</div>
       <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 flex-1 gap-5 mt-10">
-        {products.map((product, i) => (
-          <Link href={`${product.id}`}>
-            <ProductCard key={i} {...product} />
-          </Link>
+        {products.map((product) => (
+          <ProductCard key={product.id} {...product} />
         ))}
       </div>
     </>

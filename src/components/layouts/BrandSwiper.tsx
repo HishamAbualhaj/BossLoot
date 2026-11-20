@@ -12,24 +12,27 @@ import Asus from "@/assets/asus.svg";
 const BrandSwiper = () => {
   const images = [
     <Logitech
+      key="logitech"
       className="dark:fill-white fill-black"
       width={200}
       height={200}
     />,
-    <Nvidia className="dark:fill-white fill-black" width={200} height={200} />,
-    <Ryzen className="dark:fill-white fill-black" width={200} height={200} />,
-    <Corsair className="dark:fill-white fill-black" width={200} height={200} />,
+    <Nvidia key="nvidia" className="dark:fill-white fill-black" width={200} height={200} />,
+    <Ryzen key="ryzen" className="dark:fill-white fill-black" width={200} height={200} />,
+    <Corsair key="corsair" className="dark:fill-white fill-black" width={200} height={200} />,
     <Steelseries
+      key="steelseries"
       className="dark:fill-white fill-black"
       width={200}
       height={200}
     />,
     <Gigabyte
+      key="gigabyte"
       className="dark:fill-white fill-black"
       width={200}
       height={200}
     />,
-    <Asus className="dark:fill-white fill-black" width={200} height={200} />,
+    <Asus key="asus" className="dark:fill-white fill-black" width={200} height={200} />,
   ];
   return (
     <div className="relative mt-15">
@@ -59,7 +62,7 @@ const BrandSwiper = () => {
       >
         {images.map((img) => {
           return (
-            <SwiperSlide>
+            <SwiperSlide key={img.key}>
               <div className="flex justify-center">{img}</div>
             </SwiperSlide>
           );

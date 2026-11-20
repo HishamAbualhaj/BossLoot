@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { PenLine } from "lucide-react";
-import { frontURL } from "@/config/config";
+import Link from "next/link";
 const BlogSection = () => {
   const badgets = ["Guide", "Streaming", "Trending"];
 
@@ -44,7 +44,7 @@ const BlogSection = () => {
   ];
   return (
     <div className="container px-5 mx-auto">
-      <div className="xl:text-6xl text-4xl">BossLoot Blog</div>
+      <Link href="/blog" className="block xl:text-6xl text-4xl">BossLoot Blog</Link>
       <div className="text-muted-foreground mt-3 xl:text-lg">
         Stay ahead with gaming gear reviews, setup guides, and esports insights.
       </div>
@@ -79,9 +79,9 @@ const BlogSection = () => {
                   From lighting to microphones, make your stream stand out.
                 </div>
                 <div className="flex items-end justify-between mt-5">
-                  <div className="cursor-pointer text-white bg-primary p-2 w-fit rounded-lg max-md:text-sm">
+                  <Link href="/blog/streaming-setup" className="cursor-pointer text-white bg-primary p-2 w-fit rounded-lg max-md:text-sm">
                     Explore Setup Guide
-                  </div>
+                  </Link>
 
                   <div className="flex items-center gap-2 text-white/70 dark:text-muted-foreground">
                     <PenLine size={16} />
@@ -94,7 +94,8 @@ const BlogSection = () => {
 
           <div className="flex flex-col gap-5">
             {trendingPosts.map((post, i) => (
-              <div
+              <Link
+                href={`/blog/${post.id}`}
                 key={i}
                 className="bg-gray-100 dark:bg-secondary/25 border dark:border-border border-gray-200 p-3 rounded-2xl"
               >
@@ -124,7 +125,7 @@ const BlogSection = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

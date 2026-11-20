@@ -1,53 +1,17 @@
-import React from "react";
-import Discord from "@/assets/discord.svg";
-import Google from "@/assets/google.svg";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowLeft, Gamepad2, Sparkles, Zap } from "lucide-react";
 import Logo from "@/components/ui/Logo";
 
-const AuthLayout = ({ children }: { children: React.ReactNode }) => {
-  const links = [
-    {
-      title: "Discord",
-      icon: <Discord className="fill-gray-400 w-5 h-5" />,
-      link: "",
-    },
-    {
-      title: "Google",
-      icon: <Google className="!fill-gray-400 w-5 h-5" />,
-      link: "",
-    },
-  ];
-  return (
-    <div
-      style={{ backgroundImage: `url(/bg_login.jpg)` }}
-      className="px-5 h-screen relative bg-center bg-cover bg-no-repeat flex"
-    >
-      <div className="absolute z-20 left-16 top-8">
-        <Logo size="4xl" />
-      </div>
-      <div className="absolute top-0 left-0 h-full w-full dark:bg-[linear-gradient(rgba(15,12,41,0.8),rgba(15,12,41,0.8))]"></div>
-
-      <div className="flex-1 flex justify-center items-center">
-        <div className="flex-1 p-10 pt-8 relative max-w-[550px] z-10 border dark:border-border/50 border-gray-200 dark:bg-background bg-white rounded-lg ">
-          {children}
-          <div className="uppercase text-center mt-5 text-gray-400 flex items-center text-nowrap">
-            <div className="h-[1px] w-full dark:bg-border bg-gray-200"></div>
-            <div className="px-2"> continue with</div>{" "}
-            <div className="h-[1px] w-full dark:bg-border bg-gray-200"></div>
-          </div>
-          <div className="grid sm:grid-cols-2 grid-cols-1 gap-3 sm:mt-3 mt-5">
-            {links.map((link, i) => (
-              <div
-                key={i}
-                className="dark:hover:bg-card hover:bg-gray-100 cursor-pointer border dark:border-border/80 border-gray-200 text-center p-2 rounded-lg flex items-center justify-center gap-2"
-              >
-                {link.icon} {link.title}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default AuthLayout;
+export default function AuthLayout({ children }: { children: React.ReactNode }) {
+  return <main className="store-ui grid min-h-svh bg-white text-foreground dark:bg-background lg:grid-cols-[1fr_1fr]">
+    <aside className="relative m-4 hidden min-h-[calc(100svh-2rem)] overflow-hidden rounded-3xl bg-[#10101b] text-white lg:flex lg:flex-col lg:justify-between lg:p-12 xl:p-16">
+      <Image src="/bg_login.jpg" fill sizes="50vw" alt="A gaming setup with ambient lighting" className="object-cover opacity-50" priority />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#10101b] via-[#10101b]/35 to-[#10101b]/50" />
+      <div className="relative"><Logo /><div className="mt-10 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs text-purple-200"><Sparkles className="size-3.5" />Built for your next level</div></div>
+      <div className="relative max-w-lg"><div className="mb-6 flex size-14 items-center justify-center rounded-2xl border border-purple-400/30 bg-purple-500/20"><Gamepad2 className="size-7 text-purple-300" /></div><h2 className="text-5xl font-semibold leading-[1.12] tracking-tight xl:text-6xl">Great gear.<br />Greater <span className="text-purple-300">possibilities.</span></h2><p className="mt-6 max-w-sm text-base leading-7 text-slate-300">Build your dream setup. Find your competitive edge. Make every session yours.</p><div className="mt-10 flex items-center gap-3 border-t border-white/15 pt-6 text-sm text-slate-300"><Zap className="size-4 text-purple-300" />Gear up. Game on. BossLoot.</div></div>
+      <p className="relative mt-8 text-xs text-slate-400">Your world. Your play. Your next upgrade.</p>
+    </aside>
+    <section className="flex min-w-0 flex-col px-6 py-7 sm:px-12 lg:px-14 xl:px-24"><div className="flex items-center justify-between"><div className="lg:hidden"><Logo /></div><Link href="/" className="ml-auto inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-primary"><ArrowLeft className="size-4" />Back to store</Link></div><div className="flex flex-1 items-center justify-center py-12 lg:py-10">{children}</div><p className="text-center text-xs text-muted-foreground">BossLoot ? Made for the way you play.</p></section>
+  </main>;
+}

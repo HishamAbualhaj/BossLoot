@@ -2,7 +2,9 @@ import { Star } from "lucide-react";
 import React from "react";
 import ProductImage from "./ProductImage";
 import ProductCounter from "./ProductCounter";
-import Button from "@/components/ui/Button";
+import { AddToCartButton } from "@/components/checkout/add-to-cart-button";
+import { notFound } from "next/navigation";
+import { products } from "@/data/products";
 import ProductFeatures from "./ProductFeatures";
 import WishList from "@/components/ui/WishList";
 import RelatedProducts from "./RelatedProducts";
@@ -11,27 +13,21 @@ import ProductReview from "./ProductReview";
 const page = async ({
   params,
 }: {
-  params: Promise<{ product_id: number }>;
+  params: Promise<{ product_id: string }>;
 }) => {
+  const { product_id } = await params;
+  const product = products.find((item) => String(item.id) === product_id);
+  if (!product) notFound();
   const productDetails = {
-    id: 1,
-    title: "Wireless Noise-Cancelling Headphones",
-    price: 149.99,
-    category: "Electronics",
-    rating: 4,
-    reviews: 321,
-    description:
-      "High-fidelity wireless headphones with active noise cancellation and 30-hour battery life.",
-    images: ["/headphone_1.png", "/mouse.png", "/hand.png", "/headphone_1.png"],
+    ...product,
+    title: product.name,
+    images: [product.image, "/mouse.png", "/hand.png"],
     specs: {
-      brand: "SoundMax",
-      connectivity: "Bluetooth 5.3",
-      batteryLife: "30 hours",
-      color: "Black",
-      warranty: "2 years",
+      category: product.category.join(", "),
+      availability: "Demo product",
+      details: "Specifications coming soon",
     },
   };
-  const { product_id } = await params;
   return (
     <div className="border-b dark:border-border border-gray-200">
       <div className="min-h-screen max-w-[1500px] mx-auto pt-16 px-5">
@@ -60,7 +56,7 @@ const page = async ({
             </div>
             <div className="flex flex-wrap md:gap-5 gap-2 mt-5">
               {Object.values(productDetails.specs).map((spec) => (
-                <div className="border border-primary/20 px-3 py-1 dark:bg-card bg-gray-100 rounded-sm">
+                <div key={spec} className="border border-primary/20 px-3 py-1 dark:bg-card bg-gray-100 rounded-sm">
                   {spec}
                 </div>
               ))}
@@ -68,7 +64,7 @@ const page = async ({
             <div className="flex max-md:flex-col gap-5 mt-5 md:items-center">
               <ProductCounter />
               <div className="flex gap-5 flex-1 items-center">
-                <Button title="Buy now" className="select-none" />
+                <AddToCartButton productId={product.id} buyNow />
                 <WishList />
               </div>
             </div>

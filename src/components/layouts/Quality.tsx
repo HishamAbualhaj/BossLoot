@@ -1,5 +1,6 @@
 import React from "react";
 import ProductShowcase from "./ProductShowcase";
+import Link from "next/link";
 import { Gamepad2, Headphones, Keyboard, Monitor, Mouse } from "lucide-react";
 
 const Quality = () => {
@@ -71,9 +72,9 @@ const Quality = () => {
             Every product, a step closer to domination.
           </div>
           <ProductShowcase products={products} />
-          <div className="dark:bg-primary/80 bg-purple-500 text-white hover:bg-primary cursor-pointer py-2 mt-10 text-center rounded-md text-xl">
+          <Link href="/products" className="block dark:bg-primary/80 bg-purple-500 text-white hover:bg-primary cursor-pointer py-2 mt-10 text-center rounded-md text-xl">
             Explore  All Products
-          </div>
+          </Link>
         </div>
       </div>
     </>

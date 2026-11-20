@@ -2,7 +2,6 @@ import { Headset, Search, Users, Zap } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { frontURL } from "@/config/config";
 const Hero = () => {
   const features = [
     {
@@ -59,25 +58,29 @@ const Hero = () => {
           Discover the ultimate gaming experience with our exclusive collection
           of premium gaming gear, controllers, and accessories.
         </div>
-        <div className="relative sm:hidden flex  mt-5">
+        <form action="/products" method="get" role="search" className="relative sm:hidden flex mt-5">
           <input
-            type="text"
+            type="search"
+            name="search"
+            aria-label="Search products"
             placeholder="What are you looking for?"
             className="h-10 rounded-md w-full px-3 py-2 dark:text-white focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-4 pr-10 dark:bg-secondary/50 bg-gray-200 text-black border-gaming-purple/30 focus:border-gaming-purple dark:border "
           />
+          <button type="submit" aria-label="Submit product search" className="absolute right-0 top-0 h-10 w-10 flex items-center justify-center">
           <Search
             size="20px"
             className="text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 "
           />
-        </div>
+          </button>
+        </form>
 
         <div className="flex justify-center md:flex-row flex-col text-center gap-5 mt-10">
-          <Link href="">
+          <Link href="/signup">
             <div className="bg-gaming-purple px-7 py-2 rounded-md text-xl dark:text-white text-white">
               Get Started
             </div>
           </Link>
-          <Link href="">
+          <Link href="/products">
             <div className="bg-background text-white px-5 py-2 rounded-md text-xl">
               Explore Products
             </div>
