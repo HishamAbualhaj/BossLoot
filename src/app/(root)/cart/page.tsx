@@ -1,129 +1,18 @@
-import { productCart } from "@/types";
+"use client";
 import Image from "next/image";
-import React from "react";
-import Counter from "./Counter";
-import { Lock, Trash2Icon } from "lucide-react";
-import Button from "@/components/ui/Button";
-import Input from "@/components/ui/Input";
-import PromoCode from "./PromoCode";
-
-const page = () => {
-  let cartCount = 2;
-
-  const productsCart: productCart[] = [
-    {
-      id: 1,
-      title: "Gaming Headset",
-      image: "",
-      price: 79.99,
-      count: 1,
-      category: ["Accessories", "PC"],
-    },
-    {
-      id: 1,
-      title: "Mechanical Keyboard",
-      image: "",
-      price: 129.99,
-      count: 1,
-      category: ["Accessories"],
-    },
-    {
-      id: 1,
-      title: "Gaming Mouse",
-      image: "",
-      price: 59.99,
-      count: 1,
-      category: ["Accessories"],
-    },
-  ];
-  return (
-    <div className="border border_main">
-      <div className="max-w-[1500px] px-5 mx-auto py-10">
-        <div className="text-3xl font-medium">Shopping Cart</div>
-        <div className="text-gray-400 mt-2">{cartCount} items in your cart</div>
-        <div className="flex max-lg:flex-col gap-8 mt-5">
-          <div className="flex-1">
-            <div className="flex flex-col gap-5">
-              {productsCart.map((product, i) => (
-                <div
-                  key={i}
-                  className="border border_main rounded-md p-5 dark:bg-card/80 bg-gray-100"
-                >
-                  <div className="flex">
-                    <Image
-                      src="/mouse.png"
-                      width={120}
-                      height={120}
-                      alt="Product Image"
-                      className="object-contain"
-                    />
-                    <div className="flex-1">
-                      <div className="flex max-sm:flex-col max-sm:gap-2 justify-between">
-                        <div className="font-medium md:text-xl text-lg">
-                          {product.title}
-                        </div>
-                        <div className="text-gaming font-medium text-xl">
-                          $ {product.price}
-                        </div>
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {product.category.map((cat, i) => (
-                          <div
-                            key={i}
-                            className="bg-gray-400/20 w-fit text-sm px-2 py-1 rounded-sm mt-2"
-                          >
-                            {cat}
-                          </div>
-                        ))}
-                      </div>
-                      <div className="mt-3 flex items-center sm:justify-end gap-3">
-                        <Counter />
-                        <div className="hover:bg-red-500/20 hover:text-red-500 cursor-pointer p-2 rounded-sm">
-                          <Trash2Icon size={18} />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <PromoCode />
-          </div>
-
-          <div className="sticky top-24 lg:min-w-[400px] h-fit border border_main rounded-md p-5 dark:bg-card bg-gray-100">
-            <div className="font-medium text-xl">Order Summary</div>
-            <div className="border-b border_main pb-3">
-              <div className="flex justify-between items-center gap-16 mt-3">
-                <div className="text-gray-400 text-sm">
-                  Subtotal ({cartCount} items)
-                </div>
-                <div className="">$300</div>
-              </div>
-              <div className="flex justify-between items-center gap-16 mt-3">
-                <div className="text-gray-400 text-sm">Estimated Tax</div>
-                <div className="">$18</div>
-              </div>
-            </div>
-            <div className="flex py-3 justify-between">
-              <div className="font-bold">Total</div>
-              <div className="">${318}</div>
-            </div>
-
-            <div className="border-b pb-3 border_main">
-              <Button className="mt-3" title="Proccess to checkout" />
-            </div>
-
-            <div className="flex items-center gap-2 mt-3 text-gray-400">
-              <Lock size={17} />
-              <div className="text-sm">
-                Secure checkout powered by encryption
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default page;
+import Link from "next/link";
+import { useState } from "react";
+import { ArrowLeft, ArrowRight, Minus, Plus, ShoppingBag, Trash2, Ticket } from "lucide-react";
+import { useCheckoutStore } from "@/store/useCheckoutStore";
+import { useCheckoutReady } from "@/hooks/use-checkout-ready";
+import { cartTotals, money } from "@/lib/cart";
+import { OrderSummary } from "@/components/checkout/order-summary";
+import { BossLootLoader } from "@/components/ui/bossloot-loader";
+import { Button } from "@/components/ui/primitives/button";
+import { Input } from "@/components/ui/primitives/input";
+export default function CartPage() {
+ const ready = useCheckoutReady(); const cart = useCheckoutStore((s) => s.cart); const delivery = useCheckoutStore((s) => s.delivery); const coupon = useCheckoutStore((s) => s.coupon); const setQuantity = useCheckoutStore((s) => s.setQuantity); const setCoupon = useCheckoutStore((s) => s.setCoupon);
+ const [code, setCode] = useState(""); const [error, setError] = useState(""); const totals = cartTotals(cart, delivery, coupon);
+ if (!ready) return <BossLootLoader />;
+ return <main className="store-ui min-h-[75vh] bg-background px-5 py-9 text-foreground sm:px-8"><div className="mx-auto max-w-6xl"><Link href="/products" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary"><ArrowLeft className="size-4" />Continue shopping</Link><div className="mb-8 mt-7 flex items-end justify-between"><div><p className="text-xs font-semibold uppercase tracking-[.2em] text-purple-400">YOUR NEXT UPGRADE</p><h1 className="mt-2 text-4xl font-semibold tracking-tight">Your cart<span className="text-purple-400">.</span></h1><p className="mt-3 text-sm text-muted-foreground">Good choices. Great sessions ahead.</p></div><span aria-live="polite" className="text-sm text-muted-foreground">{totals.count} items</span></div>{totals.items.length ? <div className="grid items-start gap-7 lg:grid-cols-[minmax(0,1fr)_340px]"><div className="space-y-5">{totals.items.map((item) => <article key={item.productId} className="flex gap-4 rounded-2xl border border-border bg-card p-4 sm:gap-6 sm:p-6"><Link href={`/products/${item.productId}`} className="relative h-28 w-24 shrink-0 rounded-xl bg-muted sm:w-32"><Image src={item.product.image} alt={item.product.name} fill sizes="128px" className="object-contain p-3" /></Link><div className="min-w-0 flex-1"><div className="flex items-start justify-between gap-2"><div><p className="text-xs uppercase tracking-wider text-muted-foreground">{item.product.brand}</p><Link href={`/products/${item.productId}`} className="mt-1 block text-sm font-semibold sm:text-base">{item.product.name}</Link><p className="mt-2 text-sm font-medium">{money(item.unitPrice)} <span className="text-xs font-normal text-muted-foreground line-through">{money(item.product.price)}</span></p></div><Button variant="ghost" size="icon" aria-label={`Remove ${item.product.name}`} onClick={() => setQuantity(item.productId, 0)} className="shrink-0 text-muted-foreground hover:text-rose-400"><Trash2 className="size-4" /></Button></div><div className="mt-4 flex flex-wrap items-center justify-between gap-3"><div className="flex items-center rounded-md border border-border"><Button variant="ghost" size="icon" disabled={item.quantity <= 1} aria-label={`Decrease ${item.product.name} quantity`} onClick={() => setQuantity(item.productId, item.quantity - 1)}><Minus className="size-3" /></Button><span aria-label={`${item.product.name} quantity`} className="w-8 text-center text-sm tabular-nums">{item.quantity}</span><Button variant="ghost" size="icon" disabled={item.quantity >= item.product.stock} aria-label={`Increase ${item.product.name} quantity`} onClick={() => setQuantity(item.productId, item.quantity + 1)}><Plus className="size-3" /></Button></div><p className="font-semibold tabular-nums">{money(item.unitPrice * item.quantity)}</p></div></div></article>)}<section className="rounded-2xl border border-border bg-card p-5"><h2 className="mb-3 flex items-center gap-2 text-sm font-semibold"><Ticket className="size-4 text-purple-400" />A little bonus for your loadout</h2><form className="flex gap-2" onSubmit={(event) => { event.preventDefault(); if (code.trim().toUpperCase() !== "LOOT10") { setError("Try LOOT10 for 10% off this demo cart."); return; } setCoupon("LOOT10"); setError(""); }}><Input aria-label="Promo code" aria-describedby="coupon-feedback" placeholder="Try LOOT10" value={code} onChange={(e) => setCode(e.target.value)} className="min-w-0 rounded-md" /><Button type="submit" variant="outline">Apply</Button></form><p id="coupon-feedback" role="status" className={`mt-3 text-xs ${error ? "text-rose-300/80" : "text-muted-foreground"}`}>{error || (coupon ? "LOOT10 applied: 10% off your items." : "Have a code? Your next upgrade could cost a little less.")}</p>{coupon && <button className="mt-2 text-xs text-purple-400 underline" onClick={() => { setCoupon(""); setCode(""); }}>Remove discount</button>}</section></div><div className="space-y-4 lg:sticky lg:top-28"><OrderSummary /><Button asChild className="h-12 w-full rounded-md"><Link href="/checkout">Continue to checkout<ArrowRight className="size-4" /></Link></Button><p className="text-center text-xs leading-5 text-muted-foreground">Demo checkout. No real order or charge.</p></div></div> : <section className="flex min-h-96 flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-card p-8 text-center"><ShoppingBag className="mb-6 size-12 text-purple-400" /><h2 className="text-2xl font-semibold">Your next loadout starts here.</h2><p className="mt-3 text-sm text-muted-foreground">Your cart is empty. Find something worth playing for.</p><Button asChild className="mt-6"><Link href="/products">Explore the collection<ArrowRight className="size-4" /></Link></Button></section>}</div></main>;
+}

@@ -53,6 +53,7 @@ const SelectPaypal = () => {
           ) : (
             paypalAccounts.map((account) => (
               <PaymentCard
+                key={account.accountId}
                 onClick={() => {
                   setSelectedAccount(account.accountId);
                   setPaymentMethod({

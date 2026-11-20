@@ -1,43 +1,16 @@
 "use client";
-import Button from "@/components/ui/Button";
-import { useCheckoutStore } from "@/store/useCheckoutStore";
 import Link from "next/link";
-
-const NextPrev = () => {
-  const steps = ["shipping", "payment", "review"];
-
-  const { step, nextStep, prevStep } = useCheckoutStore();
-
-  const currentIndex = steps.indexOf(step);
-
-  let nextStepValue;
-  if (currentIndex < steps.length - 1) {
-    nextStepValue = steps[currentIndex + 1];
-  }
-
-  let prevStepValue;
-
-  if (currentIndex > 0) {
-    prevStepValue = steps[currentIndex - 1];
-  }
-
-  return (
-    <div className="flex justify-between mt-10">
-      {currentIndex !== 0 && (
-        <Link onClick={prevStep} href={`/checkout/${prevStepValue}`}>
-          <Button
-            className="w-fit! px-8 bg-transparent border border_main"
-            title="Back"
-          />
-        </Link>
-      )}
-      {currentIndex < steps.length - 1 && (
-        <Link className="ml-auto" onClick={nextStep} href={`/checkout/${nextStepValue}`}>
-          <Button className="w-fit! px-8" title="Next" />
-        </Link>
-      )}
-    </div>
-  );
-};
-
-export default NextPrev;
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
+import { completeDemoPayment } from "@/app/actions/checkout";
+import { useCheckoutStore } from "@/store/useCheckoutStore";
+import { Button } from "@/components/ui/primitives/button";
+export default function NextPrev() {
+  const path = usePathname();
+  const router = useRouter();
+  const payment = useCheckoutStore((state) => state.paymentMethod);
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState("");
+  if (path !== "/checkout/payment") return null;
+  return <div className="store-ui mt-8"><p role="status" className="mb-3 text-sm text-rose-300/80">{error}</p><div className="flex justify-between"><Button asChild variant="outline"><Link href="/checkout/shipping">Back to shipping</Link></Button><Button disabled={!payment || pending} onClick={async () => { setPending(true); setError(""); try { await completeDemoPayment(payment); router.push("/checkout/review"); } catch { setError("Please complete shipping and choose a payment method."); setPending(false); } }}>{pending ? "Continuing..." : "Review checkout"}</Button></div></div>;
+}

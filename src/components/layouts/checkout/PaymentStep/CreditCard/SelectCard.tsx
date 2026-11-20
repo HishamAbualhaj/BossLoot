@@ -5,7 +5,6 @@ import { Check, CreditCardIcon, Plus, Trash2Icon, X } from "lucide-react";
 import React, { useState } from "react";
 import AddCreditCard from "./AddCreditCard";
 import { Card } from "@/types/checkout";
-import Button from "@/components/ui/Button";
 import { useCheckoutStore } from "@/store/useCheckoutStore";
 import AddButton from "../../AddButton";
 const SelectCard = () => {
@@ -63,6 +62,7 @@ const SelectCard = () => {
           <div className="flex flex-1 flex-col gap-5">
             {cards.map((card) => (
               <div
+                key={card.id}
                 onClick={() => {
                   setSelectedCard(card.id);
                   setPaymentMethod({
@@ -122,7 +122,7 @@ const SelectCard = () => {
             ))}
           </div>
           {modal && (
-            <div className="w-1/2 rounded-md shadow p-5 right-0 top-0 dark:bg-card border bg-gray-100 border_main z-10">
+            <div className="w-full lg:w-1/2 rounded-md shadow p-5 right-0 top-0 dark:bg-card border bg-gray-100 border_main z-10">
               <div
                 onClick={() => {
                   setModal(false);
@@ -132,9 +132,7 @@ const SelectCard = () => {
                 <X />
               </div>
               <AddCreditCard />
-              <div className="flex justify-end">
-                <Button className="mt-5 w-fit! px-5" title="Continue" />
-              </div>
+
             </div>
           )}
         </div>

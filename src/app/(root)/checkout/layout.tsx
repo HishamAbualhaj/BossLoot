@@ -1,17 +1,2 @@
-import CheckoutContainer from "@/components/layouts/checkout/CheckoutContainer";
-import NextPrev from "@/components/layouts/checkout/NextPrev";
-import StepIndicator from "@/components/layouts/checkout/StepIndicator";
-
-const CheckoutLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <>
-      <CheckoutContainer>
-        <StepIndicator />
-        {children}
-        <NextPrev />
-      </CheckoutContainer>
-    </>
-  );
-};
-
-export default CheckoutLayout;
+import { CheckoutShell } from "@/components/checkout/checkout-shell";
+export default function CheckoutLayout({ children }: { children: React.ReactNode }) { return <CheckoutShell>{children}</CheckoutShell>; }

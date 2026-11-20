@@ -1,80 +1,16 @@
 "use client";
-import { ArrowLeft } from "lucide-react";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import SelectCard from "./CreditCard/SelectCard";
-
-import { Method } from "@/types/checkout";
+import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { CreditCard, Wallet, Check, ArrowRight } from "lucide-react";
 import { useCheckoutStore } from "@/store/useCheckoutStore";
-import SelectPaypal from "./Paypal/SelectPaypal";
-import SelectCrypto from "./Crypto/SelectCrypto";
-import { cn } from "@/lib/cn";
-
-const PaymentStep = () => {
-  const [selectedMethod, setSelectedMethod] = useState<Method>(null);
-
-  const paymentMethods = [
-    {
-      id: "credit",
-      title: "Credit Cards",
-      image: "/visa.png",
-    },
-    {
-      id: "crypto",
-      title: "Crypto",
-      image: "/crypto.png",
-    },
-    {
-      id: "paypal",
-      title: "Paypal",
-      image: "/paypal.png",
-    },
-  ] as const;
-  const { paymentMethod, setStep } = useCheckoutStore();
-
-  useEffect(() => {
-    setStep("payment");
-  }, []);
-  return (
-    <div className="mt-10">
-      {selectedMethod && (
-        <div
-          onClick={() => {
-            setSelectedMethod(null);
-          }}
-          className="border border_main w-fit p-2 px-5 rounded-md cursor-pointer mb-5"
-        >
-          <ArrowLeft className="text-muted-foreground " />
-        </div>
-      )}
-      {selectedMethod === "credit" && <SelectCard />}
-      {selectedMethod === "paypal" && <SelectPaypal />}
-      {selectedMethod === "crypto" && <SelectCrypto />}
-      {!selectedMethod && (
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
-          {paymentMethods.map((method, i) => (
-            <div
-              onClick={() => {
-                setSelectedMethod(method.id);
-              }}
-              key={i}
-              className={cn(
-                `${method.id === paymentMethod?.option && "border-primary!"}`,
-                "dark:hover:bg-muted hover:bg-muted-foreground/20 transition",
-                "dark:bg-card flex items-center gap-5 border border_main",
-                "p-5 rounded-lg cursor-pointer"
-              )}
-            >
-              <Image alt="" width={50} height={50} src={method.image} />
-              <div className="font-medium lg:text-xl text-lg font-mono">
-                {method.title}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default PaymentStep;
+import { paymentLabel } from "@/lib/cart";
+import { completeDemoShipping, completeDemoPayment } from "@/app/actions/checkout";
+import { Button } from "@/components/ui/primitives/button";
+import AddCreditCard from "./CreditCard/AddCreditCard";
+const methods = [{ id: "credit", title: "Credit or debit card", note: "Demo Visa ending in 4242", icon: CreditCard }, { id: "paypal", title: "PayPal", note: "Use a placeholder PayPal account", icon: Wallet }, { id: "crypto", title: "Crypto wallet", note: "Use a placeholder wallet", icon: Wallet }] as const;
+export default function PaymentStep() {
+ const method = useCheckoutStore((s) => s.paymentMethod); const setMethod = useCheckoutStore((s) => s.setPaymentMethod); const card = useCheckoutStore((s) => s.demoCard); const shipping = useCheckoutStore((s) => s.shipping); const markComplete = useCheckoutStore((s) => s.markPaymentComplete);
+ const [editing, setEditing] = useState(false); const [pending, setPending] = useState(false); const [error, setError] = useState(""); const router = useRouter();
+ return <section className="rounded-2xl border border-border bg-card p-5 sm:p-8"><p className="text-xs font-semibold uppercase tracking-wider text-purple-400">STEP 02 / PAYMENT</p><h2 className="mt-2 text-2xl font-semibold">Choose how you pay.</h2><p className="mb-6 mt-2 text-sm leading-6 text-muted-foreground">Select a sample payment method. Nothing is charged.</p><div role="radiogroup" aria-label="Payment method" className="space-y-3">{methods.map(({ id, title, note, icon: Icon }) => <button key={id} type="button" role="radio" aria-checked={method?.option === id} onClick={() => { setMethod(id === "credit" ? { option: id, data: { visaCardId: card ? "demo-custom" : "demo-4242" } } : id === "paypal" ? { option: id, data: { accountId: "demo-paypal" } } : { option: id, data: { walletId: "demo-wallet" } }); setError(""); }} className={`flex w-full items-center gap-4 rounded-xl border p-4 text-left transition ${method?.option === id ? "border-purple-400/60 bg-purple-500/5" : "border-border hover:border-purple-400/30"}`}><span className="flex size-11 items-center justify-center rounded-lg bg-muted"><Icon className="size-5 text-purple-400" /></span><span className="flex-1"><span className="block text-sm font-medium">{title}</span><span className="mt-1 block text-xs text-muted-foreground">{id === "credit" && card ? paymentLabel(method, card) : note}</span></span><span className={`flex size-5 items-center justify-center rounded-full border ${method?.option === id ? "border-primary bg-primary text-white" : "border-border"}`}>{method?.option === id && <Check className="size-3" />}</span></button>)}</div><Button variant="link" className="mt-3 h-auto px-0 text-sm text-purple-400" onClick={() => setEditing(!editing)}>{editing ? "Hide card form" : "Use a different demo card"}</Button>{editing && <div className="mt-4 rounded-xl border border-border bg-muted/30 p-5"><AddCreditCard /></div>}<p className="mt-5 text-xs leading-5 text-muted-foreground">Only your selection and masked card details are saved on this device. Card numbers and security codes are never stored.</p>{error && <p role="alert" className="mt-4 text-sm text-rose-300/80">{error}</p>}<div className="mt-7 flex flex-wrap justify-between gap-3 border-t border-border pt-5"><Button asChild variant="outline"><Link href="/checkout/shipping">Back to shipping</Link></Button><Button disabled={!method || pending} onClick={async () => { setPending(true); try { await completeDemoShipping(shipping); await completeDemoPayment(method); markComplete(); router.push("/checkout/review"); } catch { setError("Please check your shipping information and payment selection."); setPending(false); } }}>{pending ? "Saving selection..." : "Review checkout"}<ArrowRight className="size-4" /></Button></div></section>;
+}
