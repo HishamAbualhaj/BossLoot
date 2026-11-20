@@ -1,68 +1,7 @@
 import Link from "next/link";
-import React from "react";
-import { Search, ShoppingCart } from "lucide-react";
-import { User } from "lucide-react";
+import { ArrowRight, Gamepad2, Search, User } from "lucide-react";
 import DarkModeToggle from "../ui/DarkModeToggle";
-
-const Header = () => {
-  return (
-    <>
-      <div className="dark:bg-secondary/70  bg-gray-300 border-gaming-purple/20 dark:text-white text-background py-3 text-center capitalize flex max-xl:flex-col justify-center items-center gap-5">
-        <div className="">
-          Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
-        </div>
-        <div className="px-4 py-1 bg-purple-500 text-purple-200 rounded-md cursor-pointer">
-          Shop Now
-        </div>
-      </div>
-      <header className="border-b py-3 xl:px-15 px-8 border-gaming-purple/20 dark:bg-background bg-white/90 backdrop-blur-sm sticky top-0 z-50">
-        <div className="flex items-center justify-between">
-          <div className="text-2xl font-extrabold text-gaming">BossLoot</div>
-
-          <div className="flex gap-10 max-lg:hidden">
-            {["Home", "Products", "Contact", "About us"].map((item, i) => (
-              <Link
-                href="/"
-                key={i}
-                className=" dark:text-gray-400 text-background"
-              >
-                <div>{item}</div>
-              </Link>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-4">
-              <div className="relative sm:flex hidden">
-                <input
-                  type="text"
-                  placeholder="What are you looking for?"
-                  className="h-10 rounded-md px-3 py-2 dark:text-white focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-4 pr-10 w-64 dark:bg-secondary/50 bg-gray-200 text-black border-gaming-purple/30 focus:border-gaming-purple dark:border"
-                />
-                <Search
-                  size="20px"
-                  className="text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 "
-                />
-              </div>
-
-              <DarkModeToggle />
-            </div>
-            <div className="flex">
-              <div className="p-3 rounded-md cursor-pointer hover:bg-gaming-purple/20 transition">
-                <User size="20px" className="text-gray-400" />
-              </div>
-              <div className="p-3 rounded-md cursor-pointer hover:bg-gaming-purple/20 transition">
-                <ShoppingCart
-                  size="19px"
-                  className="text-gray-400 cursor-pointer"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-    </>
-  );
-};
-
-export default Header;
+import { CartLink } from "@/components/landing/cart-link";
+export default function Header() {
+ return <><div className="bg-[#251339] px-4 py-2.5 text-center text-[11px] text-purple-100"><Link href="/products?category=specials" className="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1"><span className="font-semibold tracking-wider text-purple-300">A LITTLE EXTRA LOOT</span><span>Try LOOT10 for 10% off your demo cart.</span><ArrowRight className="size-3" /></Link></div><header className="store-ui sticky top-0 z-50 border-b border-border bg-card/95 text-foreground backdrop-blur-md"><div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-x-5 gap-y-3 px-5 py-4 sm:px-8 lg:px-12"><Link href="/" aria-label="BossLoot home" className="flex shrink-0 items-center gap-2.5"><span className="flex size-9 items-center justify-center rounded-lg bg-purple-500/10 text-purple-500"><Gamepad2 className="size-6" /></span><span className="text-xl font-bold tracking-tight">Boss<span className="text-purple-500">Loot</span><span className="ml-1 align-top text-[9px] text-muted-foreground">TM</span></span></Link><nav aria-label="Main navigation" className="order-last flex w-full items-center justify-center gap-5 border-t border-border pt-3 text-sm sm:gap-7 lg:order-none lg:w-auto lg:border-0 lg:pt-0">{[{title:"Home",href:"/"},{title:"Shop",href:"/products"},{title:"PC gear",href:"/products?platform=pc"},{title:"Deals",href:"/products?category=specials"},{title:"Journal",href:"/blog"}].map(item => <Link key={item.title} href={item.href} className="whitespace-nowrap text-muted-foreground transition hover:text-purple-500">{item.title}</Link>)}</nav><div className="flex items-center gap-1 sm:gap-3"><form action="/products" method="get" role="search" className="relative hidden xl:block"><input type="search" name="search" aria-label="Search products" placeholder="Find your next upgrade" className="h-10 w-52 rounded-md border border-border bg-muted/30 pl-3 pr-10 text-xs outline-none focus:border-purple-400" /><button type="submit" aria-label="Submit product search" className="absolute right-0 top-0 flex size-10 items-center justify-center text-muted-foreground"><Search className="size-4" /></button></form><DarkModeToggle /><Link href="/login" aria-label="Sign in" className="flex size-10 items-center justify-center rounded-md transition hover:bg-muted"><User className="size-[19px]" /></Link><CartLink /></div></div></header></>;
+}

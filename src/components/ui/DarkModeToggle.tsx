@@ -1,27 +1,7 @@
 "use client";
 import { Moon, Sun } from "lucide-react";
-import React, { useState } from "react";
-
-const DarkModeToggle = () => {
-  const [isDark, setIsDark] = useState(true);
-
-  return (
-    <div
-      onClick={() => {
-        setIsDark(!isDark);
-        document.documentElement.classList.toggle("dark");
-      }}
-      className="border hover:border-purple-500/80 w-14 rounded-2xl border-gray-400/50 p-[3px] cursor-pointer"
-    >
-      <div
-        className={`bg-gray-400/40 w-fit rounded-2xl p-[3px] ${
-          isDark ? "translate-x-0" : "translate-x-[calc(100%+9.5px)]"
-        } transition`}
-      >
-        {isDark ? <Moon size={13} /> : <Sun size={13} />}
-      </div>
-    </div>
-  );
-};
-
-export default DarkModeToggle;
+import { useState } from "react";
+export default function DarkModeToggle() {
+ const [dark, setDark] = useState(true);
+ return <button type="button" aria-label={dark ? "Switch to light theme" : "Switch to dark theme"} onClick={() => { const next = !document.documentElement.classList.contains("dark"); document.documentElement.classList.toggle("dark", next); setDark(next); }} className="flex size-10 items-center justify-center rounded-md text-muted-foreground transition hover:bg-muted hover:text-purple-500">{dark ? <Sun className="size-[18px]" /> : <Moon className="size-[18px]" />}</button>;
+}
