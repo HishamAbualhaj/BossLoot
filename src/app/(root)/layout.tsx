@@ -1,3 +1,4 @@
+
 import Header from "@/components/layouts/Header";
 import Footer from "@/components/layouts/Footer";
 import { Suspense } from "react";
@@ -8,6 +9,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <>
       <Header />

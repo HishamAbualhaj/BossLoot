@@ -10,8 +10,8 @@ export const shippingSchema = yup.object({
     .trim()
     .required("Street address is required")
     .min(5, "Enter a complete street address")
-    .max(200),
-  city: yup.string().trim().required("City is required").max(80),
-  zipCode: yup.string().trim().required("Postal code is required").max(20),
-  country: yup.string().trim().required("Country is required").max(80),
+    .max(200, "Use 200 characters or fewer"),
+  city: yup.string().trim().required("City is required").max(80, "Use 80 characters or fewer"),
+  zipCode: yup.string().trim().required("Postal code is required").max(20, "Use 20 characters or fewer"),
+  country: yup.string().trim().required("Country is required").max(80, "Use 80 characters or fewer"),
 });

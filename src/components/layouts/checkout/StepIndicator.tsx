@@ -1,8 +1,12 @@
 "use client";
+import { useStoreCopy } from "@/i18n/use-store-copy";
+
 
 import { usePathname } from "next/navigation";
 
 const StepIndicator = () => {
+  const translate = useStoreCopy();
+
   const steps = [
     {
       number: "1",
@@ -41,9 +45,9 @@ const StepIndicator = () => {
                 : ""
             } border border_main rounded-[100%]  w-8 h-8 flex justify-center items-center`}
           >
-            {item.number}
+            {translate(item.number)}
           </div>
-          <div className="">{item.title}</div>
+          <div className="">{translate(item.title)}</div>
         </div>
       ))}
     </div>

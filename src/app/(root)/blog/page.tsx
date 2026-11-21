@@ -98,7 +98,7 @@ const page = ({ params }: { params: Promise<{ category_id: string }> }) => {
         <div className="flex max-lg:flex-col gap-10 ">
           <BlogSideBar />
 
-          <div className="flex-1 lg:border-l dark:border-border border-gray-200 lg:pl-10">
+          <div className="flex-1 lg:border-l dark:border-border border-gray-200 lg:ps-10">
             <div className="flex max-md:flex-col max-md:gap-5 justify-between">
               <BlogHeader />
             </div>

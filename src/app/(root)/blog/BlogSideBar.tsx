@@ -1,7 +1,11 @@
+
+import { useStoreCopy } from "@/i18n/use-store-copy";
 import Link from "next/link";
 import React from "react";
 
 const BlogSideBar = () => {
+  const translate = useStoreCopy();
+
   const categories = [
     {
       title: "General",
@@ -40,7 +44,7 @@ const BlogSideBar = () => {
     <div className="flex lg:flex-col gap-8 lg:h-[800px] lg:sticky lg:top-24 overflow-auto max-lg:pb-5">
       {categories.map((arr, i) => (
         <div key={i} className="flex lg:flex-col gap-3">
-          <div className="font-bold text-lg max-lg:hidden">{arr.title}</div>
+          <div className="font-bold text-lg max-lg:hidden">{translate(arr.title)}</div>
           <div className="flex lg:flex-col gap-3">
             {arr.list.map((list, i) => (
               <Link
@@ -48,7 +52,7 @@ const BlogSideBar = () => {
                 key={i}
                 className="dark:text-gray-400 text-muted text-nowrap"
               >
-                {list.title}
+                {translate(list.title)}
               </Link>
             ))}
           </div>

@@ -1,0 +1,18 @@
+{
+  "language": "اللغة",
+  "languageError": "تعذر تغيير اللغة. حاول مرة أخرى.",
+  "navigation": "التنقل الرئيسي",
+  "home": "الرئيسية",
+  "shop": "المتجر",
+  "pcGear": "معدات الكمبيوتر",
+  "deals": "العروض",
+  "journal": "المدونة",
+  "search": "البحث عن المنتجات",
+  "searchPlaceholder": "اعثر على ترقيتك القادمة",
+  "submitSearch": "إرسال البحث",
+  "signIn": "تسجيل الدخول",
+  "cart": "سلة التسوق",
+  "homeLabel": "الصفحة الرئيسية لـ BossLoot",
+  "promoTitle": "مكافآت إضافية",
+  "promoDescription": "استخدم LOOT10 لخصم 10٪ على سلتك التجريبية."
+}

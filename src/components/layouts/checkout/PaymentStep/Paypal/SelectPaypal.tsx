@@ -1,4 +1,6 @@
 "use client";
+import { useStoreCopy } from "@/i18n/use-store-copy";
+
 import Button from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 import { useCheckoutStore } from "@/store/useCheckoutStore";
@@ -11,6 +13,8 @@ import { Paypal } from "@/types/checkout";
 import AddButton from "../../AddButton";
 
 const SelectPaypal = () => {
+  const translate = useStoreCopy();
+
   const paypalAccounts: Paypal[] = [
     {
       accountId: "12321312312",
@@ -34,22 +38,19 @@ const SelectPaypal = () => {
     <div className="relative">
       <div className=" flex items-center gap-3 mb-2">
         <div className="p-2 rounded-lg bg-primary/10">
-          <Image src="/paypal.png" width={35} height={35} alt="paypal image" />
+          <Image src="/paypal.png" width={35} height={35} alt={translate("paypal image")} />
         </div>
         <h1 className="text-2xl font-bold dark:text-foreground">
-          Payment Methods
-        </h1>
+          {translate(" Payment Methods ")}</h1>
       </div>
-      <p className="text-muted-foreground ml-16">
-        Select a paypal account for this transaction or add a new one
-      </p>
+      <p className="text-muted-foreground ms-16">
+        {translate(" Select a paypal account for this transaction or add a new one ")}</p>
 
       <div className="flex gap-5 mt-5 max-lg:flex-col">
         <div className="flex flex-1 flex-col gap-5">
           {paypalAccounts.length === 0 ? (
             <div className="text-center text-xl text-muted-foreground py-10">
-              No Accounts Found
-            </div>
+              {translate(" No Accounts Found ")}</div>
           ) : (
             paypalAccounts.map((account) => (
               <PaymentCard
@@ -69,7 +70,7 @@ const SelectPaypal = () => {
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <p className="font-medium text-lg">Paypal</p>
+                        <p className="font-medium text-lg">{translate("Paypal")}</p>
                       </div>
                       {account.accountId === selectedAccount && (
                         <div
@@ -83,13 +84,12 @@ const SelectPaypal = () => {
                       )}
                     </div>
                     <div className="flex items-center gap-2 text-muted-foreground text-sm mt-1">
-                      Email:
-                      <span className="font-mono tracking-wider">
-                        {account.email}
+                      {translate(" Email: ")}<span className="font-mono tracking-wider">
+                        {translate(account.email)}
                       </span>
                     </div>
                     <div className="flex items-center justify-between mt-2">
-                      <p className="text-muted-foreground">{account.name}</p>
+                      <p className="text-muted-foreground">{translate(account.name)}</p>
                       <div
                         onClick={(e) => {
                           e.stopPropagation();
@@ -106,7 +106,7 @@ const SelectPaypal = () => {
           )}
         </div>
         {modal && (
-          <div className="lg:w-1/2 rounded-md shadow p-5 right-0 top-0 dark:bg-card border bg-gray-100 border_main z-10">
+          <div className="lg:w-1/2 rounded-md shadow p-5 end-0 top-0 dark:bg-card border bg-gray-100 border_main z-10">
             <div
               onClick={() => {
                 setModal(false);
@@ -121,7 +121,7 @@ const SelectPaypal = () => {
       </div>
 
       {!modal && (
-        <AddButton title="Add new paypal account" onClick={setModal} />
+        <AddButton title={translate("Add new paypal account")} onClick={setModal} />
       )}
     </div>
   );

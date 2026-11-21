@@ -1,3 +1,5 @@
+
+import { useStoreCopy } from "@/i18n/use-store-copy";
 import React from "react";
 import Visa from "@/assets/visa.svg";
 import Binance from "@/assets/binance.svg";
@@ -5,6 +7,8 @@ import Paypal from "@/assets/paypal.svg";
 import Mastercard from "@/assets/mastercard.svg";
 import Heading from "../ui/Heading";
 const Payment = () => {
+  const translate = useStoreCopy();
+
   const options = [
     {
       image: (
@@ -69,7 +73,7 @@ const Payment = () => {
   return (
     <div className="text-center xl:py-15 py-12 px-5">
       <Heading
-        title="Payment Options"
+        title={translate("Payment Options")}
         subtitle="Shop with confidence using your preferred payment method. All
         transactions are secured with industry-leading encryption."
       />
@@ -88,18 +92,17 @@ const Payment = () => {
           })}
         </div>
         <div className="mt-10 xl:text-4xl text-2xl">
-          Secure payments, fearless shopping.
-        </div>
+          {translate(" Secure payments, fearless shopping. ")}</div>
         <div className="grid 2xl:grid-cols-3 xl:grid-cols-2 grid-cols-1 gap-4 mt-10">
           {paymentFeatures.map((item, i) => (
             <div
               key={i}
               className=" dark:border-border border-gray-400/25 dark:bg-card/80 bg-gray-400/15 border p-5 rounded-md"
             >
-              <div className="text-lg"> {item.title}</div>
+              <div className="text-lg"> {translate(item.title)}</div>
 
               <div className="mt-3 dark:text-muted-foreground text-black/70">
-                {item.subtitle}
+                {translate(item.subtitle)}
               </div>
             </div>
           ))}

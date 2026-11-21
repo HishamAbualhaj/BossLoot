@@ -1,8 +1,12 @@
+
+import { useStoreCopy } from "@/i18n/use-store-copy";
 import { Headset, Search, Users, Zap } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 const Hero = () => {
+  const translate = useStoreCopy();
+
   const features = [
     {
       icon: <Headset size="25px" />,
@@ -25,18 +29,18 @@ const Hero = () => {
   ];
   return (
     <>
-      <div className="md:w-[220px] md:h-[220px] w-[120px] h-[120px] left-22 md:top-40 top-52  absolute">
+      <div className="md:w-[220px] md:h-[220px] w-[120px] h-[120px] start-22 md:top-40 top-52  absolute">
         <Image
-          alt="mouse image"
+          alt={translate("mouse image")}
           src={`/mouse.png`}
           fill
           className="object-contain animate-float opacity-75 [animation-delay:2s]"
         />
       </div>
 
-      <div className="md:w-[220px] md:h-[220px] w-[120px] h-[120px] right-22 md:top-40 top-96 absolute">
+      <div className="md:w-[220px] md:h-[220px] w-[120px] h-[120px] end-22 md:top-40 top-96 absolute">
         <Image
-          alt="hand image"
+          alt={translate("hand image")}
           height={220}
           width={220}
           src={`/hand.png`}
@@ -47,29 +51,25 @@ const Hero = () => {
       <div className="dark:bg-[image:var(--gradient-gaming-subtle)] bg-[image:var(--gradient-gaming)] py-15 px-5">
         <div className="text-center flex flex-col py-10  relative z-10">
           <div className="text-gamng 2xl:text-8xl xl:text-7xl text-6xl font-bold">
-            Gaming
-          </div>
+            {translate(" Gaming ")}</div>
           <div className="text-white 2xl:text-8xl xl:text-7xl text-6xl font-bold">
-            Exclusive
-          </div>
+            {translate(" Exclusive ")}</div>
         </div>
 
         <div className="dark:text-gray-500  text-black mx-auto max-w-[700px] text-center xl:text-xl text-md relative z-10">
-          Discover the ultimate gaming experience with our exclusive collection
-          of premium gaming gear, controllers, and accessories.
-        </div>
+          {translate(" Discover the ultimate gaming experience with our exclusive collection of premium gaming gear, controllers, and accessories. ")}</div>
         <form action="/products" method="get" role="search" className="relative sm:hidden flex mt-5">
           <input
             type="search"
             name="search"
-            aria-label="Search products"
-            placeholder="What are you looking for?"
-            className="h-10 rounded-md w-full px-3 py-2 dark:text-white focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-4 pr-10 dark:bg-secondary/50 bg-gray-200 text-black border-gaming-purple/30 focus:border-gaming-purple dark:border "
+            aria-label={translate("Search products")}
+            placeholder={translate("What are you looking for?")}
+            className="h-10 rounded-md w-full px-3 py-2 dark:text-white focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm ps-4 pe-10 dark:bg-secondary/50 bg-gray-200 text-black border-gaming-purple/30 focus:border-gaming-purple dark:border "
           />
-          <button type="submit" aria-label="Submit product search" className="absolute right-0 top-0 h-10 w-10 flex items-center justify-center">
+          <button type="submit" aria-label={translate("Submit product search")} className="absolute end-0 top-0 h-10 w-10 flex items-center justify-center">
           <Search
             size="20px"
-            className="text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 "
+            className="text-gray-400 absolute end-3 top-1/2 -translate-y-1/2 "
           />
           </button>
         </form>
@@ -77,13 +77,11 @@ const Hero = () => {
         <div className="flex justify-center md:flex-row flex-col text-center gap-5 mt-10">
           <Link href="/signup">
             <div className="bg-gaming-purple px-7 py-2 rounded-md text-xl dark:text-white text-white">
-              Get Started
-            </div>
+              {translate(" Get Started ")}</div>
           </Link>
           <Link href="/products">
             <div className="bg-background text-white px-5 py-2 rounded-md text-xl">
-              Explore Products
-            </div>
+              {translate(" Explore Products ")}</div>
           </Link>
         </div>
 
@@ -97,10 +95,10 @@ const Hero = () => {
                 {item.icon}
               </div>
               <div className="text-xl font-bold text-white dark:text-white">
-                {item.title}
+                {translate(item.title)}
               </div>
               <div className="dark:text-gray-400 max-w-[400px]">
-                {item.subtitle}
+                {translate(item.subtitle)}
               </div>
             </div>
           ))}

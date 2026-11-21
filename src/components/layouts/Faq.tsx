@@ -1,8 +1,12 @@
+
+import { useStoreCopy } from "@/i18n/use-store-copy";
 import React from "react";
 import Heading from "../ui/Heading";
 import FaqSection from "./FaqSection";
 
 const Faq = () => {
+  const translate = useStoreCopy();
+
   const faqs = [
     {
       question: "What is BossLoot?",
@@ -46,7 +50,7 @@ const Faq = () => {
       <div className="container px-5 mx-auto ">
         <div className="text-center">
           <Heading
-            title="Frequently Asked Questions"
+            title={translate("Frequently Asked Questions")}
             subtitle="Find quick answers to the most common questions about BossLoot."
           />
         </div>

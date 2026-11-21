@@ -1,4 +1,6 @@
 "use client";
+import { useStoreCopy } from "@/i18n/use-store-copy";
+
 import BrandLogo from "@/components/ui/BrandLogo";
 import { cn } from "@/lib/cn";
 import { Check, CreditCardIcon, Plus, Trash2Icon, X } from "lucide-react";
@@ -8,6 +10,8 @@ import { Card } from "@/types/checkout";
 import { useCheckoutStore } from "@/store/useCheckoutStore";
 import AddButton from "../../AddButton";
 const SelectCard = () => {
+  const translate = useStoreCopy();
+
   const [modal, setModal] = useState(false);
 
   const { setPaymentMethod, paymentMethod } = useCheckoutStore();
@@ -51,12 +55,10 @@ const SelectCard = () => {
             <CreditCardIcon className="w-6 h-6 text-primary" />
           </div>
           <h1 className="text-2xl font-bold dark:text-foreground">
-            Payment Methods
-          </h1>
+            {translate(" Payment Methods ")}</h1>
         </div>
-        <p className="text-muted-foreground ml-12">
-          Select a card for this transaction or add a new one
-        </p>
+        <p className="text-muted-foreground ms-12">
+          {translate(" Select a card for this transaction or add a new one ")}</p>
 
         <div className="flex gap-5 mt-5 max-lg:flex-col">
           <div className="flex flex-1 flex-col gap-5">
@@ -81,11 +83,10 @@ const SelectCard = () => {
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <p className="font-medium text-lg">{card.type}</p>
+                        <p className="font-medium text-lg">{translate(card.type)}</p>
                         {card.isDefault && (
                           <span className="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary font-medium">
-                            Default
-                          </span>
+                            {translate(" Default ")}</span>
                         )}
                       </div>
                       {card.id === selectedCard && (
@@ -102,11 +103,11 @@ const SelectCard = () => {
                     <div className="flex items-center gap-2 text-muted-foreground text-sm mt-1">
                       <CreditCardIcon className="w-4 h-4" />
                       <span className="font-mono tracking-wider">
-                        •••• •••• •••• {card.lastFourNums}
+                        •••• •••• •••• {translate(card.lastFourNums)}
                       </span>
                     </div>
                     <div className="flex items-center justify-between mt-2">
-                      <p className="text-muted-foreground">{card.holder}</p>
+                      <p className="text-muted-foreground">{translate(card.holder)}</p>
                       <div
                         onClick={(e) => {
                           e.stopPropagation();
@@ -122,7 +123,7 @@ const SelectCard = () => {
             ))}
           </div>
           {modal && (
-            <div className="w-full lg:w-1/2 rounded-md shadow p-5 right-0 top-0 dark:bg-card border bg-gray-100 border_main z-10">
+            <div className="w-full lg:w-1/2 rounded-md shadow p-5 end-0 top-0 dark:bg-card border bg-gray-100 border_main z-10">
               <div
                 onClick={() => {
                   setModal(false);
@@ -136,7 +137,7 @@ const SelectCard = () => {
             </div>
           )}
         </div>
-        {!modal && <AddButton title="Add new card" onClick={setModal} />}
+        {!modal && <AddButton title={translate("Add new card")} onClick={setModal} />}
       </div>
     </>
   );

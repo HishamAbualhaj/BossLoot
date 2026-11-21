@@ -1,7 +1,11 @@
 "use client";
+import { useStoreCopy } from "@/i18n/use-store-copy";
+
 import React, { useState } from "react";
 import Image from "next/image";
 const ProductImage = ({ images }: { images: string[] }) => {
+  const translate = useStoreCopy();
+
   const [currentImage, setCurrentImage] = useState("");
   return (
     <>
@@ -9,7 +13,7 @@ const ProductImage = ({ images }: { images: string[] }) => {
         <div className="w-full relative h-[500px]">
           <Image
             fill
-            alt="product"
+            alt={translate("product")}
             src={currentImage}
             className="object-contain"
           />
@@ -28,7 +32,7 @@ const ProductImage = ({ images }: { images: string[] }) => {
             <Image
               width={200}
               height={200}
-              alt="product"
+              alt={translate("product")}
               src={image}
               className="object-contain"
             />

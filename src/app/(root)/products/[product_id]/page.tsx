@@ -1,3 +1,5 @@
+
+import { getStoreCopy } from "@/i18n/store-copy-server";
 import { Star } from "lucide-react";
 import React from "react";
 import ProductImage from "./ProductImage";
@@ -15,6 +17,8 @@ const page = async ({
 }: {
   params: Promise<{ product_id: string }>;
 }) => {
+  const translate = await getStoreCopy();
+
   const { product_id } = await params;
   const product = products.find((item) => String(item.id) === product_id);
   if (!product) notFound();
@@ -23,7 +27,7 @@ const page = async ({
     title: product.name,
     images: [product.image, "/mouse.png", "/hand.png"],
     specs: {
-      category: product.category.join(", "),
+      category: product.category.map(category => translate(category)).join(", "),
       availability: "Demo product",
       details: "Specifications coming soon",
     },
@@ -36,7 +40,7 @@ const page = async ({
             <ProductImage images={productDetails.images} />
           </div>
           <div className="border dark:border-border border-gray-200 p-5 rounded-md">
-            <div className="text-2xl">{productDetails.title}</div>
+            <div className="text-2xl">{translate(productDetails.title)}</div>
             <div className="flex gap-2  mt-3 items-center">
               <div className="flex gap-2">
                 {Array.from({ length: productDetails.rating }).map((_, i) => (
@@ -50,14 +54,14 @@ const page = async ({
               </div>
               <div className="text-gray-400">({productDetails.reviews})</div>
             </div>
-            <div className="text-3xl mt-5">${productDetails.price}</div>
+            <div className="text-3xl mt-5">{translate(`$${productDetails.price.toFixed(2)}`)}</div>
             <div className="mt-5 text-gray-400">
-              {productDetails.description}
+              {translate(productDetails.description)}
             </div>
             <div className="flex flex-wrap md:gap-5 gap-2 mt-5">
               {Object.values(productDetails.specs).map((spec) => (
                 <div key={spec} className="border border-primary/20 px-3 py-1 dark:bg-card bg-gray-100 rounded-sm">
-                  {spec}
+                  {translate(spec)}
                 </div>
               ))}
             </div>

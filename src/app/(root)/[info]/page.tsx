@@ -1,3 +1,5 @@
+
+import { getStoreCopy } from "@/i18n/store-copy-server";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -37,19 +39,21 @@ export function generateStaticParams() {
 }
 
 export default async function InformationPage({ params }: { params: Promise<{ info: string }> }) {
+  const translate = await getStoreCopy();
+
   const { info } = await params;
   const page = Object.hasOwn(pages, info) ? pages[info] : undefined;
   if (!page) notFound();
 
   return (
     <main className="min-h-[60vh] max-w-3xl mx-auto px-5 py-16">
-      <p className="text-sm text-purple-400 mb-3">Store preview</p>
-      <h1 className="text-4xl font-bold">{page.title}</h1>
-      <p className="text-muted-foreground mt-5 leading-relaxed">{page.description}</p>
-      <p className="text-sm text-muted-foreground mt-3">This page contains placeholder information.</p>
+      <p className="text-sm text-purple-400 mb-3">{translate("Store preview")}</p>
+      <h1 className="text-4xl font-bold">{translate(page.title)}</h1>
+      <p className="text-muted-foreground mt-5 leading-relaxed">{translate(page.description)}</p>
+      <p className="text-sm text-muted-foreground mt-3">{translate("This page contains placeholder information.")}</p>
       <div className="flex flex-wrap gap-4 mt-8">
-        <Link href="/products" className="rounded-md bg-primary text-white px-5 py-3">Browse products</Link>
-        <Link href="/" className="rounded-md border border_main px-5 py-3">Back to home</Link>
+        <Link href="/products" className="rounded-md bg-primary text-white px-5 py-3">{translate("Browse products")}</Link>
+        <Link href="/" className="rounded-md border border_main px-5 py-3">{translate("Back to home")}</Link>
       </div>
     </main>
   );

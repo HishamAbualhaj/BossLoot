@@ -1,3 +1,5 @@
+
+import { useStoreCopy } from "@/i18n/use-store-copy";
 import React from "react";
 
 interface props {
@@ -5,15 +7,17 @@ interface props {
   subtitle: string;
 }
 const Title = ({ title, subtitle }: props) => {
+  const translate = useStoreCopy();
+
   return (
     <div className="flex gap-5 items-start">
       <div className="w-6 h-12  bg-primary rounded-2xl"></div>
       <div className="flex flex-col gap-5">
         <div className="xl:text-5xl text-4xl dark:text-white text-black">
-          {title}
+          {translate(title)}
         </div>
         <div className="dark:text-muted-foreground text-black/70">
-          {subtitle}
+          {translate(subtitle)}
         </div>
       </div>
     </div>

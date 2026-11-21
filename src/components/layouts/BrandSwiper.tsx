@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
@@ -10,6 +11,8 @@ import Steelseries from "@/assets/steelseries.svg";
 import Gigabyte from "@/assets/gigabyte.svg";
 import Asus from "@/assets/asus.svg";
 const BrandSwiper = () => {
+
+
   const images = [
     <Logitech
       key="logitech"
@@ -36,8 +39,8 @@ const BrandSwiper = () => {
   ];
   return (
     <div className="relative mt-15">
-      <div className="w-[300px] z-10 h-full absolute left-0  bg-gradient-to-r dark:from-background from-gray-200 to-transparent"></div>
-      <div className="w-[300px] z-10 h-full absolute right-0  bg-gradient-to-l dark:from-background from-gray-200  to-transparent"></div>
+      <div className="w-[300px] z-10 h-full absolute start-0  bg-gradient-to-r dark:from-background from-gray-200 to-transparent"></div>
+      <div className="w-[300px] z-10 h-full absolute end-0  bg-gradient-to-l dark:from-background from-gray-200  to-transparent"></div>
       <Swiper
         modules={[Autoplay]}
         loop={true}

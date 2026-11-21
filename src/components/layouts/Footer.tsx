@@ -1,10 +1,91 @@
+
+import { useStoreCopy } from "@/i18n/use-store-copy";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 import Link from "next/link";
 import { ArrowUpRight, Gamepad2 } from "lucide-react";
 const groups = [
- { title: "The collection", links: [["Shop all", "/products"], ["PC gear", "/products?platform=pc"], ["Console gear", "/products?platform=console"], ["Special offers", "/products?category=specials"]] },
- { title: "Your corner", links: [["Your cart", "/cart"], ["Sign in", "/login"], ["Create an account", "/signup"], ["The journal", "/blog"]] },
- { title: "Here to help", links: [["Contact us", "/contact"], ["Shipping & returns", "/shipping-returns"], ["Warranty", "/warranty"], ["About BossLoot", "/about"]] },
+  {
+    title: "The collection",
+    links: [
+      ["Shop all", "/products"],
+      ["PC gear", "/products?platform=pc"],
+      ["Console gear", "/products?platform=console"],
+      ["Special offers", "/products?category=specials"],
+    ],
+  },
+  {
+    title: "Your corner",
+    links: [
+      ["Your cart", "/cart"],
+      ["Sign in", "/login"],
+      ["Create an account", "/signup"],
+      ["The journal", "/blog"],
+    ],
+  },
+  {
+    title: "Here to help",
+    links: [
+      ["Contact us", "/contact"],
+      ["Shipping & returns", "/shipping-returns"],
+      ["Warranty", "/warranty"],
+      ["About BossLoot", "/about"],
+    ],
+  },
 ];
 export default function Footer() {
- return <footer className="store-ui border-t border-border bg-card text-foreground"><div className="mx-auto max-w-[1440px] px-5 pt-12 sm:px-8 lg:px-12"><div className="grid gap-10 pb-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]"><div><Link href="/" className="inline-flex items-center gap-2 text-2xl font-bold tracking-tight"><Gamepad2 className="size-7 text-purple-500" />Boss<span className="-ml-2 text-purple-500">Loot</span></Link><p className="mt-4 max-w-xs text-sm leading-7 text-muted-foreground">For late nights, new high scores, and the setups that make them happen.</p><Link href="/community" className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-purple-500">Find your squad<ArrowUpRight className="size-4" /></Link></div>{groups.map(group => <div key={group.title}><h2 className="mb-5 text-sm font-semibold">{group.title}</h2><ul className="space-y-3">{group.links.map(([title,href]) => <li key={title}><Link href={href} className="inline-block py-1 text-sm text-muted-foreground transition hover:text-purple-500">{title}</Link></li>)}</ul></div>)}</div><div className="flex flex-wrap items-center justify-between gap-5 border-t border-border py-6 text-xs text-muted-foreground"><p>Copyright {new Date().getFullYear()} BossLoot. Gear up. Game on.</p><div className="flex gap-5"><Link href="/privacy" className="hover:text-purple-500">Privacy</Link><Link href="/terms" className="hover:text-purple-500">Terms</Link><span>USD / English</span></div></div></div></footer>;
+  const translate = useStoreCopy();
+
+  return (
+    <footer className="store-ui border-t border-border bg-card text-foreground">
+      <div className="mx-auto max-w-[1440px] px-5 pt-12 sm:px-8 lg:px-12">
+        <div className="grid gap-10 pb-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+          <div>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-2xl font-bold tracking-tight"
+            >
+              <Gamepad2 className="size-7 text-purple-500" />
+              {translate(" Boss")}<span className="-ms-2 text-purple-500">{translate("Loot")}</span>
+            </Link>
+            <p className="mt-4 max-w-xs text-sm leading-7 text-muted-foreground">
+              {translate(" For late nights, new high scores, and the setups that make them happen. ")}</p>
+            <Link
+              href="/community"
+              className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-purple-500"
+            >
+              {translate(" Find your squad ")}<ArrowUpRight className="size-4" />
+            </Link>
+          </div>
+          {groups.map((group) => (
+            <div key={group.title}>
+              <h2 className="mb-5 text-sm font-semibold">{translate(group.title)}</h2>
+              <ul className="space-y-3">
+                {group.links.map(([title, href]) => (
+                  <li key={title}>
+                    <Link
+                      href={href}
+                      className="inline-block py-1 text-sm text-muted-foreground transition hover:text-purple-500"
+                    >
+                      {translate(title)}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div className="flex flex-wrap items-center justify-between gap-5 border-t border-border py-6 text-xs text-muted-foreground">
+          <p>
+            {translate(" Copyright ")}{new Date().getFullYear()} {translate(" BossLoot. Gear up. Game on. ")}</p>
+          <div className="flex gap-5">
+            <Link href="/privacy" className="hover:text-purple-500">
+              {translate(" Privacy ")}</Link>
+            <Link href="/terms" className="hover:text-purple-500">
+              {translate(" Terms ")}</Link>
+            <LanguageSwitcher />
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 }

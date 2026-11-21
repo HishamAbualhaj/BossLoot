@@ -1,12 +1,16 @@
+
+import { useStoreCopy } from "@/i18n/use-store-copy";
 import React from "react";
 import BrandSwiper from "./BrandSwiper";
 import Heading from "../ui/Heading";
 const Brands = () => {
+  const translate = useStoreCopy();
+
   return (
     <div className="px-5">
       <div className="xl:py-15 py-12 text-center px-5 border-b dark:border-border border-gray-500/20">
         <Heading
-          title="Brands & Partnerships"
+          title={translate("Brands & Partnerships")}
           subtitle="We partner with the world's leading gaming and technology brands to
           bring you the best products, exclusive deals, and cutting-edge
           innovation."

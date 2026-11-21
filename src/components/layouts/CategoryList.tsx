@@ -1,8 +1,12 @@
 "use client";
+import { useStoreCopy } from "@/i18n/use-store-copy";
+
 import React, { useState } from "react";
 import { Gamepad, Usb, Play, Shirt, Star, Puzzle } from "lucide-react";
 import Link from "next/link";
 const CategoryList = () => {
+  const translate = useStoreCopy();
+
   const [activeCategory, setActiveCategory] = useState<number>(0);
 
   const categoriesItems = [
@@ -80,7 +84,7 @@ const CategoryList = () => {
   ];
   return (
     <div className="flex gap-5 mt-10 lg:flex-row flex-col">
-      <div className="dark:bg-card/50 bg-gray-200/50 rounded-lg lg:p-5 lg:pr-15 max-lg:px-5 dark:border border-border/50">
+      <div className="dark:bg-card/50 bg-gray-200/50 rounded-lg lg:p-5 lg:pe-15 max-lg:px-5 dark:border border-border/50">
         <div className="flex lg:flex-col overflow-auto max-lg:py-5 gap-5">
           {categories.map((cat, i) => (
             <button
@@ -95,7 +99,7 @@ const CategoryList = () => {
               } dark:hover:bg-muted hover:bg-white/30 transition rounded-xl  cursor-pointer px-5 py-[11px] text-nowrap dark:text-muted-foreground text-black/90 flex items-center xl:gap-5 gap-2`}
             >
               {cat.icon}
-              {cat.name}
+              {translate(cat.name)}
             </button>
           ))}
         </div>
@@ -108,7 +112,7 @@ const CategoryList = () => {
               key={`${activeCategory}-${i}`}
               className={`dark:border relative z-10 bg-gray-200/50 dark:bg-card border-border/50 animate-appear bg-center bg-cover max-lg:py-10 rounded-md flex items-center justify-center dark:text-muted-foreground text-black/90`}
             >
-              {txt.name}
+              {translate(txt.name)}
             </Link>
         ))}
       </div>

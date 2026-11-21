@@ -1,10 +1,13 @@
+
+import { useStoreCopy } from "@/i18n/use-store-copy";
 const BrandLogo = ({ brand }: { brand: "visa" | "mastercard" }) => {
+  const translate = useStoreCopy();
+
   if (brand === "visa") {
     return (
       <div className="flex items-center justify-center w-14 h-9 bg-gradient-to-br from-blue-600 to-blue-800 rounded-md">
         <span className="text-foreground font-bold text-sm tracking-wide italic">
-          VISA
-        </span>
+          {translate(" VISA ")}</span>
       </div>
     );
   }

@@ -1,4 +1,6 @@
 "use client";
+import { useStoreCopy } from "@/i18n/use-store-copy";
+
 import React from "react";
 import Title from "../ui/Title";
 
@@ -12,11 +14,13 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { products } from "@/data/products";
 const Products = () => {
+  const translate = useStoreCopy();
+
   return (
     <div className="relative dark:bg-purple-900/5 bg-white/30 px-5">
       <div className="container z-10 relative">
         <Title
-          title="Products"
+          title={translate("Products")}
           subtitle="Quality products, curated for gamers like you."
         />
         <Swiper

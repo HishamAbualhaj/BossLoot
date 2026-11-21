@@ -1,0 +1,18 @@
+{
+  "language": "Langue",
+  "languageError": "Impossible de changer de langue. Réessayez.",
+  "navigation": "Navigation principale",
+  "home": "Accueil",
+  "shop": "Boutique",
+  "pcGear": "Équipement PC",
+  "deals": "Offres",
+  "journal": "Journal",
+  "search": "Rechercher des produits",
+  "searchPlaceholder": "Trouvez votre prochaine amélioration",
+  "submitSearch": "Lancer la recherche",
+  "signIn": "Connexion",
+  "cart": "Panier",
+  "homeLabel": "Accueil BossLoot",
+  "promoTitle": "UN PETIT BONUS",
+  "promoDescription": "Essayez LOOT10 pour 10 % de réduction sur votre panier de démonstration."
+}

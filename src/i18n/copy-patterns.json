@@ -1,0 +1,82 @@
+[
+  {
+    "source": "View {value0}",
+    "key": "dynamic_0"
+  },
+  {
+    "source": "{value0} out of 5 stars",
+    "key": "dynamic_1"
+  },
+  {
+    "source": "Remove {value0} filter",
+    "key": "dynamic_2"
+  },
+  {
+    "source": "Page {value0}",
+    "key": "dynamic_3"
+  },
+  {
+    "source": "{value0}+ stars",
+    "key": "dynamic_4"
+  },
+  {
+    "source": "From $ {value0}",
+    "key": "dynamic_5"
+  },
+  {
+    "source": "From ${value0}",
+    "key": "dynamic_6"
+  },
+  {
+    "source": "Up to ${value0}",
+    "key": "dynamic_7"
+  },
+  {
+    "source": "Demo card ending in {value0}",
+    "key": "dynamic_8"
+  },
+  {
+    "source": "Place demo order ? {value0}",
+    "key": "dynamic_9"
+  },
+  {
+    "source": "Only {value0} left in stock",
+    "key": "dynamic_10"
+  },
+  {
+    "source": "{value0} stars & up",
+    "key": "dynamic_11"
+  },
+  {
+    "source": "{value0} must be at most {value1} characters",
+    "key": "dynamic_12"
+  },
+  {
+    "source": "{value0} items",
+    "key": "dynamic_13"
+  },
+  {
+    "source": "Qty {value0}",
+    "key": "dynamic_14"
+  },
+  {
+    "source": "{value0} min read",
+    "key": "dynamic_15"
+  },
+  {
+    "source": "Remove {value0}",
+    "key": "dynamic_16"
+  },
+  {
+    "source": "Decrease {value0} quantity",
+    "key": "dynamic_17"
+  },
+  {
+    "source": "Increase {value0} quantity",
+    "key": "dynamic_18"
+  },
+  {
+    "source": "{value0} quantity",
+    "key": "dynamic_19"
+  }
+]

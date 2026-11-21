@@ -1,3 +1,5 @@
+
+import { useStoreCopy } from "@/i18n/use-store-copy";
 import { Gamepad2, LoaderCircle } from "lucide-react";
 import { cn } from "@/lib/cn";
 
@@ -6,6 +8,8 @@ export function BossLootLoader({
 }: {
   fullScreen?: boolean;
 }) {
+  const translate = useStoreCopy();
+
   return (
     <div
       role="status"
@@ -18,7 +22,7 @@ export function BossLootLoader({
     >
       <div className="relative mb-6 flex size-20 items-center justify-center rounded-2xl border border-purple-400/25 bg-purple-500/10">
         <Gamepad2 aria-hidden="true" className="size-9 text-purple-400" />
-        <span className="absolute -bottom-2 -right-2 rounded-full bg-background p-1.5">
+        <span className="absolute -bottom-2 -end-2 rounded-full bg-background p-1.5">
           <LoaderCircle
             aria-hidden="true"
             className="size-5 animate-spin text-purple-400 motion-reduce:animate-none"
@@ -26,11 +30,10 @@ export function BossLootLoader({
         </span>
       </div>
       <p aria-hidden="true" className="text-2xl font-bold tracking-tight">
-        Boss<span className="text-purple-400">Loot</span>
+        {translate(" Boss")}<span className="text-purple-400">{translate("Loot")}</span>
       </p>
       <p className="mt-3 text-sm text-muted-foreground">
-        Loading your next level...
-      </p>
+        {translate(" Loading your next level... ")}</p>
     </div>
   );
 }

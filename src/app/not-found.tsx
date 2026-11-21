@@ -1,8 +1,12 @@
 "use client";
+import { useStoreCopy } from "@/i18n/use-store-copy";
+
 import { useRouter } from "next/navigation";
 import { Gamepad2 } from "lucide-react";
 
 export default function NotFound() {
+  const translate = useStoreCopy();
+
   const router = useRouter();
 
   return (
@@ -20,16 +24,13 @@ export default function NotFound() {
       </div>
 
       <p className="text-lg text-gray-400 max-w-md">
-        Oops! Looks like this level doesn’t exist. The page you’re trying to
-        reach is out of the map.
-      </p>
+        {translate(" Oops! Looks like this level doesn’t exist. The page you’re trying to reach is out of the map. ")}</p>
 
       <button
         onClick={() => router.push("/")}
         className="mt-8 px-8 py-3 rounded-xl font-semibold cursor-pointer border border-border hover:bg-card"
       >
-        Back to Home
-      </button>
+        {translate(" Back to Home ")}</button>
     </div>
   );
 }

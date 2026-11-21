@@ -1,0 +1,18 @@
+{
+  "language": "Language",
+  "languageError": "Unable to change language. Please try again.",
+  "navigation": "Main navigation",
+  "home": "Home",
+  "shop": "Shop",
+  "pcGear": "PC gear",
+  "deals": "Deals",
+  "journal": "Journal",
+  "search": "Search products",
+  "searchPlaceholder": "Find your next upgrade",
+  "submitSearch": "Submit product search",
+  "signIn": "Sign in",
+  "cart": "Shopping cart",
+  "homeLabel": "BossLoot home",
+  "promoTitle": "A LITTLE EXTRA LOOT",
+  "promoDescription": "Try LOOT10 for 10% off your demo cart."
+}

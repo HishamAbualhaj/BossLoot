@@ -1,8 +1,11 @@
 "use client";
+
 import { Minus, Plus } from "lucide-react";
 import React, { useState } from "react";
 
 const Counter = () => {
+
+
   const maxValue = 100;
   const [counter, setCounter] = useState(1);
   return (

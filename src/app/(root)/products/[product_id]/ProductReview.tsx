@@ -1,10 +1,14 @@
 "use client";
+import { useStoreCopy } from "@/i18n/use-store-copy";
+
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { User } from "lucide-react";
 import React, { useState } from "react";
 
 const ProductReview = () => {
+  const translate = useStoreCopy();
+
   const reviews = [
     {
       id: 1,
@@ -91,7 +95,7 @@ const ProductReview = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   return (
     <>
-      <div className="text-5xl">Reviews</div>
+      <div className="text-5xl">{translate("Reviews")}</div>
       <div className="mt-5">
         <div className="flex items-center gap-5">
           <div className="border dark:border-border border-gray-200 p-4 dark:bg-card rounded-full">
@@ -102,11 +106,11 @@ const ProductReview = () => {
             onChange={(e) => {
               setReview(e.target.value);
             }}
-            placeholder="Enter your review"
+            placeholder={translate("Enter your review")}
             type="text"
             value={review}
           />
-          <Button className="!w-fit px-5" title="Send" />
+          <Button className="!w-fit px-5" title={translate("Send")} />
         </div>
         <div className="mt-10 flex flex-col gap-5 max-h-[700px] overflow-auto">
           {reviews.map((review, i) => (
@@ -116,9 +120,9 @@ const ProductReview = () => {
                   <User />
                 </div>
                 <div className="">
-                  <div className="">{review.name}</div>
+                  <div className="">{translate(review.name)}</div>
                   <div className="text-gray-500 mt-2 max-w-[1200px]">
-                    {review.comment}
+                    {translate(review.comment)}
                   </div>
                 </div>
               </div>
@@ -143,8 +147,7 @@ const ProductReview = () => {
               }}
               className="text-center cursor-pointer mt-5"
             >
-              Show more
-            </div>
+              {translate(" Show more ")}</div>
           )}
         </div>
       </div>

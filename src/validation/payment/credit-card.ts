@@ -17,7 +17,7 @@ export const creditCardSchema = yup.object({
     .string()
     .trim()
     .required("Cardholder name is required")
-    .max(100),
+    .max(100, "Use 100 characters or fewer"),
   cardNumber: yup
     .string()
     .required("Card number is required")
@@ -46,5 +46,5 @@ export const creditCardSchema = yup.object({
     .trim()
     .required("Billing address is required")
     .min(5, "Enter a complete billing address")
-    .max(200),
+    .max(200, "Use 200 characters or fewer"),
 });

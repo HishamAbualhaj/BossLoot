@@ -374,3 +374,12 @@ button:disabled { cursor: not-allowed; }
 }
 
 .store-ui input[aria-invalid="true"] { border-color: rgb(251 113 133 / 0.5); }
+
+/* Arabic letters join naturally; Latin display tracking can break that rhythm. */
+html[lang="ar"] .store-ui :is(h1, h2, h3, p, span, button, a, label) {
+  letter-spacing: normal;
+}
+
+html[lang="ar"] .store-ui h1 {
+  line-height: 1.35;
+}

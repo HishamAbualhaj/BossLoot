@@ -5,7 +5,7 @@ export const email = yup
   .trim()
   .email("Enter a valid email address")
   .required("Email is required")
-  .max(254);
+  .max(254, "Use 254 characters or fewer");
 export const firstName = yup
   .string()
   .trim()

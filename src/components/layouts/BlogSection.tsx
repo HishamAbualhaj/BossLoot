@@ -1,8 +1,12 @@
+
+import { useStoreCopy } from "@/i18n/use-store-copy";
 import Image from "next/image";
 import React from "react";
 import { PenLine } from "lucide-react";
 import Link from "next/link";
 const BlogSection = () => {
+  const translate = useStoreCopy();
+
   const badgets = ["Guide", "Streaming", "Trending"];
 
   const trendingPosts = [
@@ -44,21 +48,20 @@ const BlogSection = () => {
   ];
   return (
     <div className="container px-5 mx-auto">
-      <Link href="/blog" className="block xl:text-6xl text-4xl">BossLoot Blog</Link>
+      <Link href="/blog" className="block xl:text-6xl text-4xl">{translate("BossLoot Blog")}</Link>
       <div className="text-muted-foreground mt-3 xl:text-lg">
-        Stay ahead with gaming gear reviews, setup guides, and esports insights.
-      </div>
+        {translate(" Stay ahead with gaming gear reviews, setup guides, and esports insights. ")}</div>
 
       <div className="mt-10">
         <div className="flex max-xl:flex-col xl:items-start gap-5">
           <div className="flex-1 w-full border rounded-2xl overflow-hidden dark:border-border border-gray-400/25 relative">
-            <div className="flex top-5 z-20 left-5 absolute w-fit gap-2">
+            <div className="flex top-5 z-20 start-5 absolute w-fit gap-2">
               {badgets.map((badget) => (
                 <div
                   key={badget}
                   className="px-3 py-1 rounded-2xl bg-purple-600/50 text-white text-[13.5px] font-medium border-white/20"
                 >
-                  {badget}
+                  {translate(badget)}
                 </div>
               ))}
             </div>
@@ -69,23 +72,20 @@ const BlogSection = () => {
               height={800}
               src={`/setup_gaming.png`}
             />
-            <div className="bg-gradient-to-t from-black/70 to-transparent w-full h-full absolute z-10 bottom-0 left-0"></div>
+            <div className="bg-gradient-to-t from-black/70 to-transparent w-full h-full absolute z-10 bottom-0 start-0"></div>
             <div className="absolute bottom-0 z-20 w-full">
               <div className="p-7">
                 <div className="md:text-4xl sm:text-2xl text-xl font-bold text-white">
-                  Level Up Your Streaming Setup
-                </div>
+                  {translate(" Level Up Your Streaming Setup ")}</div>
                 <div className="mt-2 dark:text-muted-foreground text-white/70 ">
-                  From lighting to microphones, make your stream stand out.
-                </div>
+                  {translate(" From lighting to microphones, make your stream stand out. ")}</div>
                 <div className="flex items-end justify-between mt-5">
                   <Link href="/blog/streaming-setup" className="cursor-pointer text-white bg-primary p-2 w-fit rounded-lg max-md:text-sm">
-                    Explore Setup Guide
-                  </Link>
+                    {translate(" Explore Setup Guide ")}</Link>
 
                   <div className="flex items-center gap-2 text-white/70 dark:text-muted-foreground">
                     <PenLine size={16} />
-                    <div className="text-sm">BossLoot Team</div>
+                    <div className="text-sm">{translate("BossLoot Team")}</div>
                   </div>
                 </div>
               </div>
@@ -109,19 +109,19 @@ const BlogSection = () => {
                   />
                   <div className="">
                     <div className="sm:max-w-[300px]">
-                      <div className="text-lg">{post.title}</div>
+                      <div className="text-lg">{translate(post.title)}</div>
                       <div className="text-sm text-muted-foreground mt-2">
-                        {post.subtitle}
+                        {translate(post.subtitle)}
                       </div>
                     </div>
 
                     <div className="flex mt-5 items-center text-muted-foreground justify-between">
                       <div className="flex gap-2">
                         <PenLine size={15} />
-                        <div className="text-sm">BossLoot Team</div>
+                        <div className="text-sm">{translate("BossLoot Team")}</div>
                       </div>
 
-                      <div className="text-sm">{post.date}</div>
+                      <div className="text-sm">{translate(post.date)}</div>
                     </div>
                   </div>
                 </div>

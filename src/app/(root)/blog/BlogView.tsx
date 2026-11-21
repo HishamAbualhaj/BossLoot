@@ -1,4 +1,6 @@
 "use client"
+import { useStoreCopy } from "@/i18n/use-store-copy";
+
 import React from "react";
 
 import { blog } from "@/types";
@@ -10,6 +12,8 @@ interface BlogViewProps {
   data: blog[];
 }
 const BlogView = ({ data }: BlogViewProps) => {
+  const translate = useStoreCopy();
+
   
   return (
     <div className="">
@@ -21,25 +25,25 @@ const BlogView = ({ data }: BlogViewProps) => {
           <div className="">
             <div className="flex gap-2">
               <Link href={`blog${category.link}`} className="text-purple-400 bg-purple-400/10 px-3 rounded-full text-sm py-1">
-                {category.title}
+                {translate(category.title)}
               </Link>
-              <div className=" text-gray-400">{date}</div>
+              <div className=" text-gray-400">{translate(date)}</div>
             </div>
             <Link href={`/blog/${id}`}>
-              <div className="text-2xl font-medium mt-2">{title}</div>
-              <div className="mt-2 text-gray-400">{subtitle}</div>
+              <div className="text-2xl font-medium mt-2">{translate(title)}</div>
+              <div className="mt-2 text-gray-400">{translate(subtitle)}</div>
             </Link>
 
             <div className="mt-5 flex gap-2 items-center">
               <div className="border dark:border-border border-gray-300 rounded-full p-1">
                 <User />
               </div>
-              <div className="text-sm">{author}</div>
+              <div className="text-sm">{translate(author)}</div>
             </div>
           </div>
           <div className="flex justify-end flex-1">
             <Image
-              alt="blog image"
+              alt={translate("blog image")}
               width={300}
               height={300}
               src={`/fallback_blog.png`}
@@ -49,8 +53,7 @@ const BlogView = ({ data }: BlogViewProps) => {
       ))}
 
       <div className="text-center lg:text-2xl text-xl mt-5 animate-pulse">
-        Loading ...
-      </div>
+        {translate(" Loading ... ")}</div>
     </div>
   );
 };

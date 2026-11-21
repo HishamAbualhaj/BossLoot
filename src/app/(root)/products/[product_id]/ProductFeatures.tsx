@@ -1,6 +1,10 @@
+
+import { useStoreCopy } from "@/i18n/use-store-copy";
 import { Truck, RotateCw, Shield, Headphones } from "lucide-react";
 
 export default function ProductFeatures() {
+  const translate = useStoreCopy();
+
   const features = [
     {
       icon: Truck,
@@ -33,8 +37,8 @@ export default function ProductFeatures() {
         >
           <feature.icon className="w-6 h-6 text-primary mt-1" />
           <div>
-            <h3 className="font-semibold">{feature.title}</h3>
-            <p className="text-gray-500 text-sm">{feature.description}</p>
+            <h3 className="font-semibold">{translate(feature.title)}</h3>
+            <p className="text-gray-500 text-sm">{translate(feature.description)}</p>
           </div>
         </div>
       ))}

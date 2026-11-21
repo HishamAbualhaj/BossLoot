@@ -1,9 +1,13 @@
+
+import { useStoreCopy } from "@/i18n/use-store-copy";
 import React from "react";
 import ProductShowcase from "./ProductShowcase";
 import Link from "next/link";
 import { Gamepad2, Headphones, Keyboard, Monitor, Mouse } from "lucide-react";
 
 const Quality = () => {
+  const translate = useStoreCopy();
+
   const products = [
     {
       title: "Gaming Monitor",
@@ -66,15 +70,12 @@ const Quality = () => {
       <div className="color-card-1 py-15 ">
         <div className="relative  max-w-[1400px] mx-auto px-5 ">
           <div className="text-center xl:text-7xl sm:text-5xl text-4xl text-gaming ">
-            Where quality meets victory.
-          </div>
+            {translate(" Where quality meets victory. ")}</div>
           <div className="mt-2 dark:text-muted-foreground text-black/70 xl:text-2xl sm:text-xl text-lg text-center">
-            Every product, a step closer to domination.
-          </div>
+            {translate(" Every product, a step closer to domination. ")}</div>
           <ProductShowcase products={products} />
           <Link href="/products" className="block dark:bg-primary/80 bg-purple-500 text-white hover:bg-primary cursor-pointer py-2 mt-10 text-center rounded-md text-xl">
-            Explore  All Products
-          </Link>
+            {translate(" Explore All Products ")}</Link>
         </div>
       </div>
     </>

@@ -1,3 +1,5 @@
+
+import { useStoreCopy } from "@/i18n/use-store-copy";
 import { cn } from "@/lib/cn";
 import React, { FC, PropsWithChildren } from "react";
 
@@ -7,6 +9,8 @@ interface PaymentCardProps {
   isActive: boolean;
 }
 const PaymentCard: PaymentCardType = ({ children, onClick, isActive }) => {
+  const translate = useStoreCopy();
+
   return (
     <div
       onClick={onClick}
@@ -17,7 +21,7 @@ const PaymentCard: PaymentCardType = ({ children, onClick, isActive }) => {
         "hover:bg-muted-foreground/20 transition",
       )}
     >
-      {children}
+      {translate(children)}
     </div>
   );
 };

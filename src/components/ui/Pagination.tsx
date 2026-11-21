@@ -1,3 +1,4 @@
+
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import React, { Dispatch, SetStateAction, useState } from "react";
 
@@ -14,6 +15,8 @@ const Pagination = ({
   currentPagePara,
   arrOfNums,
 }: PaginationProps) => {
+
+
   return (
     <div className="flex justify-center items-center mt-10 sm:gap-3 gap-2">
       <div

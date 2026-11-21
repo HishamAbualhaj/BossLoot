@@ -1,8 +1,12 @@
 "use client";
+import { useStoreCopy } from "@/i18n/use-store-copy";
+
 import ProductCard from "@/components/ui/ProductCard";
 import React from "react";
 
 const RelatedProducts = () => {
+  const translate = useStoreCopy();
+
   const products = [
     {
       id: 1,
@@ -52,7 +56,7 @@ const RelatedProducts = () => {
   ];
   return (
     <>
-      <div className="text-4xl">Related products</div>
+      <div className="text-4xl">{translate("Related products")}</div>
       <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 flex-1 gap-5 mt-10">
         {products.map((product) => (
           <ProductCard key={product.id} {...product} />

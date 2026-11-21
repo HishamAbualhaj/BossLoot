@@ -1,9 +1,13 @@
+
+import { useStoreCopy } from "@/i18n/use-store-copy";
 import { User } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import Heading from "../ui/Heading";
 
 const Reviews = () => {
+  const translate = useStoreCopy();
+
   const reviews = [
     {
       id: 1,
@@ -67,7 +71,7 @@ const Reviews = () => {
     <div className="bg-gray-200 dark:bg-background py-20 xl:px-15 px-5 ">
       <div className="text-center">
         <Heading
-          title="Trusted by pro gamers and streamers"
+          title={translate("Trusted by pro gamers and streamers")}
           subtitle="   Built with precision engineering and gamer feedback, our products
         deliver more than just style. They provide the edge you need to stay
         ahead in every match."
@@ -87,10 +91,10 @@ const Reviews = () => {
             } xl:p-10 p-5 rounded-md color-card-${item.id}`}
           >
             <div className="dark:text-muted-foreground text-black/50 xl:text-2xl text-xl font-bold">
-              {item.company}
+              {translate(item.company)}
             </div>
             <div className="max-w-[500px] xl:text-lg text-[17px] mt-3">
-              {item.text}
+              {translate(item.text)}
             </div>
             <div className="flex items-center mt-5 gap-3">
               <div className="p-2 border border-gray-500 rounded-full">
@@ -98,9 +102,9 @@ const Reviews = () => {
               </div>
 
               <div className="">
-                <div className="text-xl">{item.name}</div>
+                <div className="text-xl">{translate(item.name)}</div>
                 <div className="dark:text-muted-foreground mt-1 text-black/70">
-                  {item.title}
+                  {translate(item.title)}
                 </div>
               </div>
             </div>

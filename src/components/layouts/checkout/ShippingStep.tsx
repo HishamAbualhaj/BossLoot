@@ -1,4 +1,6 @@
 "use client";
+import { useStoreCopy } from "@/i18n/use-store-copy";
+
 import { useFormikContext } from "formik";
 import { useEffect } from "react";
 import type { ShippingAddress } from "@/store/useCheckoutStore";
@@ -24,6 +26,8 @@ const fields = [
   { name: "country", label: "Country", autoComplete: "country-name" },
 ];
 export default function ShippingStep() {
+  const translate = useStoreCopy();
+
   const router = useRouter();
   const saveShipping = useCheckoutStore((state) => state.saveShipping);
   const shipping = useCheckoutStore((state) => state.shipping);
@@ -34,17 +38,16 @@ export default function ShippingStep() {
       <div className="mb-6 flex items-center gap-3">
         <MapPin className="size-5 text-primary" />
         <div>
-          <h1 className="text-2xl font-semibold">Where should it go?</h1>
+          <h1 className="text-2xl font-semibold">{translate("Where should it go?")}</h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Enter a sample address to preview checkout.
-          </p>
+            {translate(" Enter a sample address to preview checkout. ")}</p>
         </div>
       </div>
       <DemoForm
         id="shipping-form"
         schema={shippingSchema}
         initialValues={shipping}
-        message="Demo shipping address validated."
+        message={translate("Demo shipping address validated.")}
         onSuccess={async (values) => {
           await completeDemoShipping(values);
           saveShipping(values);
@@ -58,8 +61,8 @@ export default function ShippingStep() {
           ))}
         </div>
         <fieldset className="space-y-3 border-t border-border pt-5">
-          <legend className="sr-only">Delivery speed</legend>
-          <h2 className="text-sm font-semibold">Choose your delivery</h2>
+          <legend className="sr-only">{translate("Delivery speed")}</legend>
+          <h2 className="text-sm font-semibold">{translate("Choose your delivery")}</h2>
           {(["standard", "express"] as const).map((option) => (
             <label
               key={option}
@@ -74,14 +77,14 @@ export default function ShippingStep() {
                 className="accent-purple-500"
               />
               <span>
-                {option === "standard"
+                {translate(option === "standard"
                   ? "Standard / 3-5 days / Free from $150, otherwise $6.99"
-                  : "Express / 1-2 days / $14.99"}
+                  : "Express / 1-2 days / $14.99")}
               </span>
             </label>
           ))}
         </fieldset>
-        <SubmitButton>Continue to payment</SubmitButton>
+        <SubmitButton>{translate("Continue to payment")}</SubmitButton>
       </DemoForm>
     </section>
   );
